@@ -88,12 +88,8 @@ imap.once('error', function(err) {
 
 imap.once('end', function() {
   	console.log('Connection ended\nCalling email parser');
-  	/*var parser = exec('python', ["email_parser.py", "eml_directory", "new_emails.json"]);
-	parser.stdout.on('data', function(test_string) {
-		var toPrint = test_string.toString('utf8');
-		util.log(toPrint);
-	});	*/
 
+  	// Call the email_parser script, telling it to look in eml_directory
 	var spawn = require('child_process').spawn,
     pythonProcess = spawn('python', ['email_parser.py', 'eml_directory', 'emails.json']);
 
@@ -112,7 +108,5 @@ imap.once('end', function() {
 
 imap.connect();
 
-
-// Call the email_parser script, telling it to look in eml_directory
-
-// Add the new emails from emails.json to the database
+// TODO Add the new emails from emails.json to the database
+// TODO add express server
