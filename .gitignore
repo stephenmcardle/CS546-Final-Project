@@ -38,3 +38,6 @@ jspm_packages
 
 # Text files
 *.txt
+
+# Ignore emails
+emails.json
