@@ -41,3 +41,4 @@ jspm_packages
 
 # Ignore emails
 emails.json
+eml_directory
