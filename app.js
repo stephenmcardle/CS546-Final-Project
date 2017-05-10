@@ -29,7 +29,7 @@ removeFilesFrom('eml_directory');
 
 // Retrieve password
 //TODO change this to asynchronous
-var pw = fs.readFileSync("pw.txt" ,encoding='utf8'); /*{
+var pw = fs.readFileSync("pw.txt", encoding='utf8'); /*{
 	if (error) throw error;
     console.log("it contained " + data);
     pw = data;
@@ -37,7 +37,7 @@ var pw = fs.readFileSync("pw.txt" ,encoding='utf8'); /*{
 
 // imap package function to open the inbox
 function openInbox(cb) {
-  imap.openBox('INBOX', true, cb);
+  imap.openBox('INBOX', false, cb);
 }
 
 // Set up imap connection
@@ -49,8 +49,17 @@ var imap = new Imap({
   tls: true
 });
 
+// Marks emails as seen after we download them
+function markMailSeen(uid) {
+    imap.setFlags([uid], ['\\Seen'], (err) => {
+      if (err) {
+        throw err
+      }
+      console.log(err)
+    });
+}
+
 // Save all of the eml files from new emails to eml_directory
-//TODO mark messages as read, the markSeen flag isn't currently working
 imap.once('ready', function() {
 	openInbox(function(err, box) {
 	  if (err) throw err;
@@ -65,6 +74,7 @@ imap.once('ready', function() {
 	        stream.pipe(fs.createWriteStream('eml_directory/msg' + seqno + '.eml'));
 	      });
 	      msg.once('attributes', function(attrs) {
+	      	markMailSeen(attrs.uid);
 	        //console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
 	      });
 	      msg.once('end', function() {

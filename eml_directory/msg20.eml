@@ -1,0 +1,1866 @@
+Delivered-To: cs546.dcinbox@gmail.com
+Received: by 10.107.35.4 with SMTP id j4csp2086783ioj;
+        Mon, 8 May 2017 15:28:56 -0700 (PDT)
+X-Received: by 10.31.8.69 with SMTP id 66mr19379750vki.144.1494282536695;
+        Mon, 08 May 2017 15:28:56 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1494282536; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=iztdqJ4y/uif6YzSZHTyFN5BW1OgspiXHZgs53asS7IgAwR8YBsZvB9YA3c8Bh2VuO
+         ux06Gx2azR+823F1Q7Fbr20+CjmdUEEXdpFR5fndUnIcfiIpbxQql6USHFyahwk9bytI
+         DpEdK1j/1x7a7KyXiE4+xqhuZaK1ihvTwWsScBiv5DPOVy7gCLn9MHuoo8N63pz4c1zn
+         L/nmyJ2Zlu6relcZmpAjlaWtl9YSVn1rgpsiANmHMqWc57Ak+6O2PXtPlyyQREH0wPGB
+         lVqGNVKuEndnf8zVnes6BAS6ydxk4+X11R2jz/jIe94b4FN4hYn56DXROMlE7ypZG5w0
+         SdkQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:piv:list-unsubscribe:feedback-id
+         :return-address:mime-version:to:reply-to:mailingid:subject:from:date
+         :message-id:dkim-signature:arc-authentication-results
+         :arc-message-signature:delivered-to:arc-authentication-results;
+        bh=PSbf/JJAwMIerwshCBvtuSMPCI4Gu2Aqg3FyxFpTNNI=;
+        b=sqdqOTAwf0aGCA2W+I1ftRJFHI0VZDVTzo7VyXkrB3f8cFYbK94FciPf8XrEQ14aF9
+         PO5qyn1QNKEUBHU65iLLYODhxglQwFpsheGkJEbOWq/U5Ayi4rqcf2Kznrpn1MlAZjsK
+         AiyrXOTuWhigmsPlsutx+kXLcdyni2xD6IFeE68qznksIctDyQFH8HrOEn4FXZhq6X+Y
+         ZpPeymi2YxEX41oWQw7gNpTuQGwHj4hZCpQVYl5yNny6wXOL1LcA5PIeWYYlZRSvn4LL
+         XX/1f2V6x4jEhwUEPgWIxSiENrTanvjc9rLUPFCEvLzbkRAjvGaAoVaW1HoheFTKqzOk
+         gO3g==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@congressnewsletter.net;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com designates 2607:f8b0:400c:c08::22e as permitted sender) smtp.mailfrom=pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=congressnewsletter.net
+Return-Path: <pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com>
+Received: from mail-ua0-x22e.google.com (mail-ua0-x22e.google.com. [2607:f8b0:400c:c08::22e])
+        by mx.google.com with ESMTPS id n6si3492394vkf.79.2017.05.08.15.28.56
+        for <cs546.dcinbox@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 May 2017 15:28:56 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com designates 2607:f8b0:400c:c08::22e as permitted sender) client-ip=2607:f8b0:400c:c08::22e;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@congressnewsletter.net;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com designates 2607:f8b0:400c:c08::22e as permitted sender) smtp.mailfrom=pols.exp+caf_=cs546.dcinbox=gmail.com@gmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=congressnewsletter.net
+Received: by mail-ua0-x22e.google.com with SMTP id j17so19542503uag.3
+        for <cs546.dcinbox@gmail.com>; Mon, 08 May 2017 15:28:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:message-id:date:from
+         :subject:mailingid:reply-to:to:mime-version:return-address
+         :feedback-id:list-unsubscribe:piv:content-transfer-encoding;
+        bh=PSbf/JJAwMIerwshCBvtuSMPCI4Gu2Aqg3FyxFpTNNI=;
+        b=e8fNhHeZUkE2iXHkCTKl7B+m+COKLSat3RcRBao+DH7o92qmjz6vWIYhbduA6r0o+5
+         VDZpSBV/JR+ZnkhA8l+WfbXxwSPndmHDbGJ5YAVTrmBeF9P3aGM50bB4ZvLoWDM+YpfS
+         vcomalB4OxPhElvEEQHACEmrSP/XmF64DbhKqIgSB2RNJfTv9CqNSdsho/8G6TanKgjW
+         5rPKuUkT7EHdnpRxkUboLoLWboAlgbs6bhT9rpAq5OZsQOL4+eWR5z1drvurMxH3FPvU
+         EV03Av3Tkz8LaibiiOa1Pktg7KDxHcQxlsrKLDYRYXffgnMfRBCLhe2PqMXnq4IaVL+k
+         yxKg==
+X-Gm-Message-State: AODbwcBzYZ1rICqEFqptr3vbGVjGwP9ueTaIL2J+M7jKc9CFy+ej1XPi
+	+VBHV3K7mCBQR8DfY3nnkQjGW2pVw3wvWmwTEgof8g==
+X-Received: by 10.31.166.139 with SMTP id p133mr3999529vke.123.1494282536010;
+        Mon, 08 May 2017 15:28:56 -0700 (PDT)
+X-Forwarded-To: pols.exp.nick@gmail.com, cs546.dcinbox@gmail.com
+X-Forwarded-For: pols.exp@gmail.com pols.exp.nick@gmail.com, cs546.dcinbox@gmail.com
+Delivered-To: pols.exp@gmail.com
+Received: by 10.176.22.194 with SMTP id g2csp1665853uaf;
+        Mon, 8 May 2017 15:28:52 -0700 (PDT)
+X-Received: by 10.200.41.196 with SMTP id 4mr61895408qtt.166.1494282532869;
+        Mon, 08 May 2017 15:28:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1494282532; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vro+ezA4mjHAHADl5E2+Js5jixNhEusJNAMCzqAQBRU2K1nLPafVI3k2KTf3+UgsEV
+         fjUZbqG/OOcdSt86+2+zJ6pDgesCfMHKBDGykVCh2gu1QOEn/qAJur+W2QOZzRTT9NH2
+         mhRFwleCdEptKZrC0s3hd3zmxxrhS9zldXRo+DLea4wswovMXpXq1CcVJDNoSh+37xDT
+         wP0eKEB8gAqSrxDvU0+twbbog4TpiN9ZenYCUVDglucoXj9g04vud9QFms9MNYwvA5Zt
+         Jg7m4X7lUKrZ7+1o325t29eNir8iVO8IncUDwwQdS8Fhh6v1OIaQLc/deanpt1ZC8Sbt
+         7aMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:piv:list-unsubscribe:feedback-id
+         :return-address:mime-version:to:reply-to:mailingid:subject:from:date
+         :message-id:dkim-signature:arc-authentication-results;
+        bh=PSbf/JJAwMIerwshCBvtuSMPCI4Gu2Aqg3FyxFpTNNI=;
+        b=sQ7GXaFofUWMXgum9KPitj/uk4+aziSH8gCDa5zB+D1y4n5HnbXq4n+TPUr4N03VBq
+         +7UPK5TB00ZjQu+9S1XKzSL9u96XQYZQnJWRxGf4SaYEG2GH5pZr5B38FczrJdAhjdQG
+         ev3Hz7UUcb4avYbJB9RbMZXvybpQqY06DPL7fMhJ6VxajudJIdcWBbRQv8ArbVxjj/4w
+         a2w3UR7Xr2IOyEX5AoVesNB9I3H4zcGBe1ZTp0AF45geFbp8DuyQMExtJJ1zzIcwxcWj
+         PPURmqg9lxMHTT9IMxRy+TpgZkKINcwYj/bpxqWMHHTa7c9gtG7Dh70zc/dygSIgVmi4
+         yyCA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@congressnewsletter.net;
+       spf=pass (google.com: domain of repkevinyoderopt@congressnewsletter.net designates 128.121.28.210 as permitted sender) smtp.mailfrom=RepKevinYoderOpt@congressnewsletter.net;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=congressnewsletter.net
+Return-Path: <RepKevinYoderOpt@congressnewsletter.net>
+Received: from kansas-optin-mta-01.congressnewsletter.net (kansas-optin-mta-01.congressnewsletter.net. [128.121.28.210])
+        by mx.google.com with ESMTPS id z94si13494391qtc.28.2017.05.08.15.28.50
+        for <pols.exp@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Mon, 08 May 2017 15:28:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of repkevinyoderopt@congressnewsletter.net designates 128.121.28.210 as permitted sender) client-ip=128.121.28.210;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=congressnewsletter.net; i=@congressnewsletter.net;
+  l=4096; q=dns/txt; s=enews-2016-10; t=1494282531;
+  x=1525818531;
+  h=from:subject:reply-to:to:mime-version:list-unsubscribe:
+   message-id:date;
+  bh=MfcvlFXnj1So55V2YZP49nyVabKhX93KhFfMIK+2Xlg=;
+  b=Mc5DIDsAh3bCp0Tgmy52bBn6yMShY+iZj6HtLt+oO986U2CQNDqI8XlH
+   1HXImxAIgykG9ftwhp48xo3cyPpcA37EmonY8uS9VnHW+p4pVoJS7t1bO
+   TVQDrqhI+tZrLTJL81HrDuUl4rkybrN9k+Y4sYG+H84A2VR21a/DilcEN
+   uFwGOMKmQlqY89vvyN4D5hh1ZlNuIEnJiHn3OdSdnzrbr+pHuAKV7a5jQ
+   0xvnWxcqRhAaI62nVWCHNSeNN3gJLZlvK6Slhi7LXLmlYYlhlAWftcsZQ
+   J1vCx53vemLSxoCNvwJLIb2iBgOJory3Knb06S6kvFhKbUSwJd21lWrCy
+   w==;
+Message-Id: <7385f1$3unqhh@vamail01-iron.politicalsystems.net>
+Date: 08 May 2017 18:28:19 -0400
+From: Congressman Kevin Yoder <kevin.yoder@congressnewsletter.net>
+Subject: House Votes to Fix Our Broken Health Care System, Chairing My First Bipartisan Legislative Branch Subcommittee Hearing
+Mailingid: 458
+Reply-To: 2100141914.5469.823@congressnewsletter.net
+To: pols.exp@gmail.com <pols.exp@gmail.com>
+MIME-Version: 1.0
+Return-Address: b2100141914.5478.755@congressnewsletter.net
+Feedback-ID: 1353:458:2100141914.5469.823:iConstituent
+List-Unsubscribe: <http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=unsubscribe&gpiv=2100141914.5469.823&gen=1>
+piv: 2100141914.5469.823
+Content-Type: multipart/alternative;boundary=__NEXTPART_1494282494050
+Content-Transfer-Encoding: 8bit
+
+This is a multi-part message in MIME format. 
+
+--__NEXTPART_1494282494050
+Content-Type: text/plain; charset="ISO-8859-1"
+
+Congressman Kevin Yoder, Proudly Representing the 3rd District of
+ Kansas
+=========================================================================
+
+*
+	Last Week in Congress*
+*
+	House Votes to Fix Our Broken
+ Health Care System*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/PassedAHCA.JPG]
+
+On Thursday, the House of
+ Representatives took the first step in fulfilling our promise to repeal and replace
+ Obamacare.
+
+There are two questions I answer with respect to every
+ vote on the House floor: is this the right bill for my district and will
+ it make the future of America stronger. The *American Health Care
+ Act* [link 1] succeeds on both.
+
+Obamacare’s big government mandates,
+ taxes, and spending are destroying our health care system today. The last
+ insurance providers are pulling out of Iowa and dozens of counties
+ across Tennessee and Virginia – leaving millions on the individual
+ market with no options for care – and Kansas could be next.
+
+ 
+
+That leaves
+ us with a choice between two solutions to repair our broken system.
+ We can turn to socialized medicine and a single payer system that puts
+ government in control, or we can restore a system of personalized
+ medicine where patients and doctors are in control. Rather than giving the
+ federal government full control of hospitals, lowering the quality of
+ care, and costing our country more than $30 trillion – what single
+ payer will do – I voted to choose markets over mandates, innovation over
+ regulation, and patients over bureaucrats.
+
+ 
+
+The AHCA makes
+ necessary and immediate repairs to the devastated system left in Obamacare’s
+ wake, and will provide more choice, more competition, lower premiums,
+ and greater access to care in the future. It reduces taxes and
+ spending, and lowers federal deficits. It restores freedom by repealing the
+ failed individual and employer mandates.
+
+ 
+
+Let me be clear – no one
+ with preexisting conditions can or will be denied affordable coverage
+ under the AHCA now or ever. In reality, our bill frees states to
+ develop innovative ways to provide them with better coverage than they
+ receive now and invests nearly $140 billion to help them succeed in doing
+ it.
+
+ 
+
+Instead of forcing Americans to buy plans they don’t want or
+ can’t afford, regulating insurance providers out of the market
+ altogether, or leaving people with no options to choose from, the AHCA makes
+ the necessary changes to repair our health care system that’s collapsing
+ before our eyes. The bill now heads to the Senate for approval. I
+ urge my Senate colleagues to send the AHCA to the President's desk for
+ signature so we can fix our broken health care system,
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link
+ 2]
+
+*
+	The American Health Care Act*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/AHCA_1.JPG]
+
+So what does the
+ *American Health Care Act (AHCA)* actually do? Opponents of health care
+ reform have been spreading misinformation and using scare tactics to drum
+ up opposition to the bill. Throughout the process, I spent a lot of
+ time reading and understanding the bill and its amendments that were
+ added along the way. Here's what the bill accomplishes by repealing and
+ replacing Obamacare and making much-needed fixes to our broken health
+ care system: 
+
+ 
+
+*Guarantees Coverage for Americans with Preexisting
+ Conditions:* The AHCA bans health insurance providers from denying
+ coverage or charging a patient with preexisting conditions higher premiums
+ as long as they maintain continuous coverage, or sign up for new
+ coverage within 63 days of exiting a previous insurance
+ plan.
+
+ 
+
+*Establishes a Patient and State Stability Fund and Federal Invisible Risk
+ Sharing Program:* The AHCA provides states with nearly $140 billion to
+ design programs that meet the unique needs of their patient populations,
+ help low-income Americans afford health care, and provide a backstop
+ safety net for Americans with preexisting conditions. This includes
+ $15 billion specifically for mental health care, substance abuse care,
+ and maternity and newborn care.
+
+ 
+
+*Keeps Age 26 Provision:* We
+ recognize that some provisions of Obamacare are positive. The AHCA continues
+ to help young adults access health insurance and stabilize the
+ marketplace by allowing individuals to stay on their parents’ plan until
+ they are 26.
+
+ 
+
+*Helps Americans Access Affordable, Quality Health
+ Care:* The AHCA establishes a monthly tax credit between $2,000 and $14,000
+ a year for low- and middle-income individuals and families who don’t
+ receive insurance through work or a government program. Americans can
+ use this tax credit to purchase the insurance plans of their
+ choice.
+
+ 
+
+*Empowers Individuals and Families:* Rather than relying on the
+ government under Obamacare, the AHCA empowers Americans' to spend their
+ health care dollars the way they want and need by nearly doubling the
+ amount of money people can contribute to their Health Savings Accounts
+ (HSAs).
+
+ 
+
+*Repeals $1 Trillion in Obamacare Taxes:* Under Obamacare,
+ job-killing taxes have increased premium costs and limited options
+ for patients and health care providers. The AHCA repeals these taxes
+ that hit the middle class and the poor the hardest, like taxes on
+ prescription drugs, over-the-counter medications, health-insurance premiums,
+ and medical devices. 
+
+ 
+
+*Restores Freedom by Eliminating the
+ Individual and Employer Mandates:* Millions of workers, families, and job
+ creators were forced into expensive Obamacare plans they don’t want and
+ can't afford. The AHCA does away with these mandates. 
+
+ 
+
+*Modernizes
+ and Strengthens Medicaid:* The AHCA transitions to a “per capita
+ allotment” for Medicaid so states can better serve the poor and Americans
+ with disabilities who rely on the program. These reforms represent the
+ largest entitlement reform in a generation and put the program on a
+ sustainable fiscal path. After all, if the program becomes insolvent it
+ won't be able to serve anyone.  
+
+ 
+
+*Promotes Work and Individual
+ Freedom:* The AHCA incentivizes able-bodied adults to obtain private
+ health care through employment so Medicaid can be refocused on helping the
+ most vulnerable. 
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 3]
+
+*
+	Chairing My First
+ Bipartisan Legislative Branch Subcommittee Hearing*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/18268267_1487437711309137_376652407680983368_n.jpg]
+
+Kevin and Ranking Member Ryan holding a hearing
+ featuring proponents of making CRS reports public.
+
+It was exciting
+ to Chair my first bipartisan *Legislative Branch Subcommittee* Hearing
+ with Ranking Member Congressman Tim Ryan (D-OH) on increasing
+ transparency in Congress. On Wednesday, a bill was introduced that would
+ require all the reports produced by the Congressional Research Service
+ (CRS) to be published for the American people to access. Right now, CRS
+ reports are only available to Members of Congress and their
+ staff.
+
+ 
+
+Throughout my career in Congress I've been a proponent of more
+ transparency and accountability in government. At last week's hearing, we
+ heard from proponents of the idea of making these reports public. I look
+ forward to working with Ranking Member Ryan as we continue this debate
+ and work with other members of committee to advance the process on
+ this legislation.
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 4]
+
+*
+	Prioritizing Investments in
+ Medical Research & National Defense*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/1_23.PNG]
+
+Click here to watch Kevin's
+ remarks on the 2017 omnibus funding bill. [link 5]
+
+Last week, I
+ joined my colleagues in the House in passing the *appropriations bill*
+ [link 6] to fund the federal government through the end of the 2017 fiscal
+ year on September 30th. It is a bipartisan agreement that shows
+ Congress is working with the Trump Administration to keep the government
+ running smoothly to ensure seniors depending on Medicare and Social
+ Security, our veterans depending on VA benefits, and active duty military
+ depending on their pay checks are receiving the services they need,
+ while also achieving significant conservative gains compared to the last
+ eight years. It makes needed investments in medical research –
+ including another $2 billion for research at the NIH for a 13% increase over
+ the last two years – as well as education, protecting our border, and
+ our soldiers.
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 7]
+
+*
+	Empowering Workers to Better
+ Balance Work, Life, and Family*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/9_7.PNG]
+
+It's time that we brought the
+ American workforce into the 21st century. In today's day and age, working
+ families need flexibility, whether that's for single parents in the
+ workforce or students who are trying to pursue a college degree while
+ working a full time job. That's why the House of Representatives passed
+ the* Working Families Flexibility Act [link 8]* last week, to take
+ down barriers to workers who need more freedom to balance work and
+ personal obligations. This bill gives workers the flexibility to spend time
+ with family, attend teacher conferences, and care for aging parents
+ by allowing private-sector employers to offer their employees the
+ choice of paid time off in lieu of cash wages for overtime hours.
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 9]
+
+*
+	Meetings in DC*
+*
+	Kansas Community Bankers*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/DSC_0652.JPG]
+
+I always enjoy meeting with some of the local community bankers to
+ listen to their thoughts and concerns about policies in DC. Last week,
+ I met with the *Kansas Community Bankers* to discuss the steps
+ Congress has taken to reduce burdensome regulations on the local banks that
+ serve the Third District. Thanks for taking the time to meet with
+ me. 
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 10]
+
+*
+	ZERO TO THREE*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/DSC_0653.JPG]
+
+Kevin
+ with Michelle Taylor and her daughter Elliana Jaymes Henry of Overland Park. 
+
+As
+ a strong supporter of early childhood education, I firmly believe in
+ the importance of investing in the early years of children's lives.
+ Last week, I met with ZERO TO THREE to discuss why Congress should “Think
+ Babies” to ensure that babies and toddlers benefit from the early
+ connections that are critical to their well-being and development. Thanks
+ to Michelle Taylor and her daughter Elliana Jaymes Henry of Overland
+ Park for coming to Capitol Hill to help raise awareness to what babies
+ and families need to thrive including early childhood education and
+ workforce issues.
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link 11]
+
+*
+	Around the
+ District*
+*
+	Military Makeover for Zeke & Lacy Crozier*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/Gunny.JPG]
+
+Kevin meeting R. Lee
+ Ermey before the Croziers' Military Makeover unveiling.
+
+Last Friday it
+ was fun to help R. Lee Ermey, more famously known as “The Gunny,” a
+ host for *Lifetime's Military Makeover*, give my friend and local
+ veteran Zeke Crozier and his family a home makeover in Overland Park. Many
+ local veterans organizations supported this project for the Croziers
+ and I was excited to be a part of it. Years ago, Zeke came to my office
+ for assistance with dealing with the *Department of Veterans Affairs
+ (VA)*. Congratulations to Zeke and Lacy on this exciting recognition.
+ I'm thankful for Zeke and the service of all of our veterans who have
+ sacrificed to keep us safe.
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/Vets_1.JPG]
+
+Kevin speaking with several local
+ veterans, including Lacy Crozier's grandfather.
+
+[image =
+ http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png] [link
+ 12]
+
+ *
+	American Health Care Act: Myth vs. Fact*
+
+*MYTH: The American
+ Health Care Act will price those with preexisting conditions out of the
+ market, making health care unaffordable for them.*
+
+ 
+
+*FACT: *Under
+ the AHCA, rules that prevent insurance providers from denying coverage
+ or charging more expensive rates based on health status remain the law
+ of the land.
+
+ 
+
+If states can show they have new innovative
+ solutions to protect individuals with preexisting conditions in a better way,
+ they can waive out of this regulatory framework ONLY for individuals
+ who have gone more than two months without purchasing insurance. Sec.
+ 136(b)(3)(F) [link 13]
+
+ 
+
+As long as you have continuous coverage, you
+ CANNOT be charged more based on health status in ANY state. Sec.
+ 2710A(b)(1)(B) [link 14]
+
+ 
+
+Even if you have a gap in coverage, insurers
+ can only charge you a higher premium for 12 months, then you are
+ returned to paying the same premiums as everyone else. Sec. 2710A(b)(3)(A)
+ [link 15]
+
+ 
+
+On top of the $130 billion investment in risk mitigation
+ programs in the bill, the AHCA devotes $8 billion over five years to
+ further stabilize the premiums of the small subset of people who would
+ be affected. Sec. 132 [link 16]
+
+*
+	*Washington Post*: Fact Checking
+ Critic's Claims About the AHCA*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/WaPo1_2.JPG]
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/FourPinocchios.JPG]
+
+Click here
+ to read the Washington Post's fact check on claims about the AHCA.
+ [link 17]
+
+*Despite critics’ claims, the GOP health bill doesn’t classify
+ rape or sexual assault as a preexisting condition*
+
+One of the viral
+ claims about the American Health Care Act (AHCA), the new Republican
+ bill to replace the Affordable Care Act (a.k.a. Obamacare), was this
+ claim that the AHCA “made being rape survivor a pre-existing condition,”
+ or that it “classified rape as a pre-existing condition.”
+
+Both media
+ coverage and hyperbole among advocates are at fault for creating a
+ misleading representation of the House GOP health bill. We wavered
+ between Three and Four Pinocchios, but the out-of-control rhetoric and the
+ numerous assumptions pushed us to *FOUR PINOCCHIOS*.
+
+*
+	*Kansas City
+ Star*: Congress Invests in Medical Research*
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/3_10.PNG]
+
+[image =
+ http://yoder.congressnewsletter.net//images/user_images/2_13.PNG]
+
+Click here to
+ read the full article from the *Kansas City Star*. [link 18]
+
+**BY
+ BRYAN LOWRY**
+
+**KANSAS CITY STAR**
+
+ 
+
+U.S. House and Senate
+ negotiators on Monday released a more than $1 trillion omnibus budget bill that
+ will fund the federal government through the end of September. The
+ bill will have to be approved by both chambers of Congress by the end of
+ Friday, when a continuing resolution to fund the federal government
+ expires.
+
+ 
+
+The bipartisan plan would provide $34 billion to the
+ National Institutes of Health, a 6.3 percent increase from the previous
+ year.
+
+ 
+
+U.S. Rep. Kevin Yoder, a Kansas Republican, said the proposed
+ increase for this year should be seen as a sign of congressional
+ Republicans’ commitment to medical research funding, noting that the
+ GOP-controlled Congress also passed a $2 billion increase in the final year of
+ the Obama administration.
+
+ 
+
+“No matter who’s president of the
+ United States, our commitment remains,” Yoder said. “Because we have met
+ with the families. We have had heartfelt conversations with constituents
+ who are suffering from an incurable disease.”
+
+*
+	Third District
+ Trivia *
+
+Last week was Small Business Week. Small businesses employ what
+ percept of the country's private workforce?
+
+Send your answers to
+ *haley.brady@mail.house.gov* and the first correct response will receive a
+ shout out in next week's newsletter.
+
+Congratulations to last week's
+ winner *Dyrk Dugan* from Overland Park!
+
+*Last week's answer:*  The
+ only NFL team that has a longer streak than Kansas City without drafting
+ a first-round QB is the New Orleans Saints, who have not selected a
+ quarterback since 1971 when they picked Hall of Famer Archie
+ Manning. 
+
+*
+	Legislative Look Ahead*
+
+Members of the House of Representatives
+ will work from their respective districts this week. 
+
+*
+	Legislative
+ Wrap Up*
+	*MONDAY, MAY 1ST*
+
+ 
+
+H.R. 910
+[link 19]– Fair Access to
+ Investment Research Act  – *PASSED 405 - 2 (YES)*
+
+ 
+
+H.R. 1312
+[link 20]–
+ Small Business Capital Formation Enhancement Act – *PASSED 406 - 0
+ (YES)*
+
+ 
+
+H.R. 1366
+[link 21]– U.S. Territories Investor Protection Act
+  –* PASSED BY VOICE VOTE*
+
+ 
+
+H.R. 657 [link 22] – Follow the Rules
+ Act –* PASSED 407 - 0 (YES)*
+
+ 
+
+ H.R. 1242
+[link 23]– 400 Years of
+ African-American History Commission Act - *PASSED BY
+ VOICE *
+
+ 
+
+*TUESDAY, MAY 2ND*
+
+ 
+
+H.R. 1679 [link 24] – FEMA Accountability,
+ Modernization and Transparency Act  – *PASSED 419 - 0 (YES)*
+
+ 
+
+H.R. 1180 [link
+ 25] – Working Families Flexibility Act – *PASSED 229 - 197
+ (YES)*
+
+ 
+
+ 
+
+*WEDNESDAY, MAY 3RD*
+ 
+H.R. 1665 [link 26] – Disaster Declaration
+ Improvement Act – *PASSED 425 - 0 (YES)*
+ 
+Concurring in the Senate
+ Amendment to H.R. 244 [link 27] – Consolidated Appropriations Act –
+ *ADOPTED 309 - 118 (YES)*
+ 
+H.R. 1678
+[link 28]– To amend the Robert T.
+ Stafford Disaster Relief and Emergency Assistance Act concerning the
+ statute of limitations for actions to recover disaster or emergency
+ assistance payments, and for other purposes, as amended – *PASSED 423 - 0
+ (YES)*
+ 
+*THURSDAY, MAY 4TH*
+ 
+H.R. 2192 [link 29] – To amend the Public
+ Health Service Act to eliminate the non-application of certain State
+ waiver provisions to Members of Congress and congressional staff –
+ *PASSED 429 - 0 (YES)*
+ 
+H.R. 1628
+[link 30]– American Health Care Act –
+ *PASSED 217 - 213 (YES)*
+
+H.R. 1644
+[link 31]– Korean Interdiction and
+ Modernization of Sanctions Act, as amended – *PASSED 419 - 1
+ (YES)*
+ 
+ 
+
+ 
+
+ 
+
+----------------------
+footnotes
+----------------------
+[link
+ 1] https://rules.house.gov/bill/115/hr-1628
+[link 2]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 3]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 4]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 5] https://www.youtube.com/watch?v=818smY0J6hI
+[link 6]
+ https://www.congress.gov/bill/115th-congress/house-bill/244?q=%7B%22search%22%3A%5B%22H.R.+244%22%5D%7D&r=1
+[link 7]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 8]
+ https://www.congress.gov/bill/115th-congress/house-bill/1180?q=%7B%22search%22%3A%5B%22H.R.+1180%22%5D%7D&r=1
+[link 9] http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link
+ 10] http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 11]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 12]
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&piv=2100141914.5469.823&snid=1
+[link 13] http://bit.ly/2pJDXlz
+[link
+ 14] http://bit.ly/2p7plsg
+[link 15] http://bit.ly/2p7plsg
+[link 16]
+ http://bit.ly/2oZqnLT
+[link 17]
+ https://www.washingtonpost.com/news/fact-checker/wp/2017/05/06/no-the-gop-health-bill-doesnt-classify-rape-or-sexual-assault-as-a-preexisting-condition/?tid=sm_tw&utm_term=.e7bfec2fd581
+[link 18]
+ http://www.kansascity.com/news/politics-government/article147887514.html
+[link 19]
+ https://www.congress.gov/bill/115th-congress/house-bill/910?q=%7B%22search%22%3A%5B%22H.R.+910%22%5D%7D&r=1
+[link 20]
+ https://www.congress.gov/bill/115th-congress/house-bill/1312?q=%7B%22search%22%3A%5B%22H.R.+1312%22%5D%7D&r=1
+[link 21]
+ https://www.congress.gov/bill/115th-congress/house-bill/1366?q=%7B%22search%22%3A%5B%22H.R.+1366%22%5D%7D&r=1
+[link 22]
+ https://www.congress.gov/search?q={%22congress%22:%22115%22,%22source%22:%22legislation%22,%22search%22:%22H.R.%20657%22}&searchResultViewType=expanded
+[link 23]
+ https://www.congress.gov/bill/115th-congress/house-bill/1242?q=%7B%22search%22%3A%5B%22H.R.+1242%22%5D%7D&r=1
+[link 24]
+ https://www.congress.gov/bill/115th-congress/house-bill/1679?q=%7B%22search%22%3A%5B%22H.R.+1679%22%5D%7D&r=1
+[link 25]
+ https://www.congress.gov/bill/115th-congress/house-bill/1180?q=%7B%22search%22%3A%5B%22H.R.+1180%22%5D%7D&r=1
+[link 26]
+ https://www.congress.gov/bill/115th-congress/house-bill/1665?q=%7B%22search%22%3A%5B%22H.R.+1665%22%5D%7D&r=1
+[link 27]
+ https://www.congress.gov/bill/115th-congress/house-bill/244?q=%7B%22search%22%3A%5B%22H.R.+244%22%5D%7D&r=1
+[link 28]
+ https://www.congress.gov/bill/115th-congress/house-bill/1678?q=%7B%22search%22%3A%5B%22H.R.+1678%22%5D%7D&r=1
+[link 29]
+ https://www.congress.gov/bill/115th-congress/house-bill/2192?q=%7B%22search%22%3A%5B%22H.R.+2192%22%5D%7D&r=1
+[link 30]
+ https://www.congress.gov/bill/115th-congress/house-bill/1628?q=%7B%22search%22%3A%5B%22H.R.+1628%22%5D%7D&r=1
+[link 31]
+ https://www.congress.gov/bill/115th-congress/house-bill/1644?q=%7B%22search%22%3A%5B%22H.R.+1644%22%5D%7D&r=1
+
+=========================================================================
+
+Contact Information: 
+
+Website:
+ http://yoder.house.gov/
+
+Office Locations: 
+Washington, DC
+2433 Rayburn HOB
+Washington, DC
+ 20515
+Phone: (202) 225-2865
+Hours: Monday-Friday
+9:00AM -6:00PM
+ EST
+
+Overland Park
+7325 W. 79th St.
+Overland Park, KS 66204
+Phone: (913)
+ 621-0832
+Fax: (913) 621-1533
+Hours: Monday-Friday
+8:00AM -5:00PM CST
+
+
+Privacy
+ Policy:
+ http://www.house.gov/content/site_tools/privacy_policy.php
+Unsubscribe:
+ http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=unsubscribe&gpiv=2100141914.5469.823&gen=1
+
+
+
+
+
+--__NEXTPART_1494282494050
+Content-Type: text/html; charset="ISO-8859-1"
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+ 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html
+ xmlns='http://www.w3.org/1999/xhtml'><head><meta http-equiv='Content-Type'
+ content='text/html; charset=UTF-8' /><title>House Votes to Fix Our Broken
+ Health Care System, Chairing My First Bipartisan Legislative Branch
+ Subcommittee Hearing</title></head><body><!-- Mail begin --><div
+ id="fwdmessage"></div><div id="top_message"></div>
+			<style
+ media='all' type='text/css'>
+			<!--
+			p.shareLink
+ {
+				text-align:left;
+			}
+			p.shareLink a {
+				padding:2px 0 0
+ 20px;
+				background-repeat:no-repeat;
+				background-position:top
+ left;
+				font-family:verdana;
+				font-size:12px;
+			}
+			p.shareLink img {
+				border:0
+ none;
+			}
+			p.ecardWebVersionLink {
+                    font-family: Arial,
+ Helvetica, sans-serif;
+                    font-size: xx-small;
+         
+           font-weight: normal;
+                    color:
+ #808080;
+			}
+			-->
+			</style>
+		
+		<style media='all'
+ type='text/css'>
+		<!--
+		body, html { margin:0;}	
+	.form_container { border:1px solid #fff;
+ margin-bottom:15px;}
+	.form_content{
+	 border:1px solid #ccc;
+ background:#f9f9f9; padding:5px;
+	}
+p.formSubmitMsg  { font-size:11px;
+ font-family: Arial;}
+	p.formHeader { padding:4px 0 0;
+ font-family:Helvetica, Arial; margin-top:0px; font-size:16px; color:#922521;
+ font-weight:bold;}
+	form { padding:0px; margin:0px;}
+	.form_content
+ p.formQuestion
+ {font-weight:bold;padding-left:5%;text-align:left;}
+	.form_content p { text-align:center;}
+	.form_content p.formAnswer
+ {text-align:left; padding-left:5%;}
+	p.submitbutton input{
+		color:#333;
+ font-family:Helvetica, Arial; font-weight:bold; background-color:#eee;
+ border:1px solid #ccc; min-width:80px; height:22px; font-size:11px;
+ cursor:pointer;
+	} 
+	h1, h2, h3 { color:#922521;}
+	a { color:#2F6191;}
+	td {
+ font-family:Helvetica, Arial; font-size:12px;}
+	td p, #mainTable p,
+ .sideBack p {margin:13px 0;}
+p.formTroubleLink { font-size:11px;
+ font-family:Helvetica, Arial;}
+		-->
+		</style>
+		<p
+ class="ecardWebVersionLink">If you are having trouble viewing this message or would like to
+ share it on a social network, you can <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?gpiv=2100141914.5469.823&gen=1">view the message online</a>.<img
+ src="http://view.icv01.net/view.gif?gpiv=2100141914.5469.823&gen=1" alt=""/></p><style type="text/css">
+  div.postcardDummy, div.postcard body, div.postcard  html {
+ margin:0;} div.postcard 	
+	.form_container { border:1px solid #fff;
+ margin-bottom:15px;} div.postcard 
+	.form_content{
+	 border:1px solid #ccc;
+ background:#f9f9f9; padding:5px;
+	} div.postcard 
+p.formSubmitMsg  {
+ font-size:11px; font-family: Arial;} div.postcard 
+	p.formHeader {
+ padding:4px 0 0; font-family:Helvetica, Arial; margin-top:0px; font-size:16px;
+ color:#922521; font-weight:bold;} div.postcard 
+	form { padding:0px;
+ margin:0px;} div.postcard 
+	.form_content p.formQuestion
+ {font-weight:bold;padding-left:5%;text-align:left;} div.postcard 
+	.form_content p {
+ text-align:center;} div.postcard 
+	.form_content p.formAnswer
+ {text-align:left; padding-left:5%;} div.postcard 
+	p.submitbutton
+ input{
+		color:#333; font-family:Helvetica, Arial; font-weight:bold;
+ background-color:#eee; border:1px solid #ccc; min-width:80px; height:22px;
+ font-size:11px; cursor:pointer;
+	} div.postcardDummy, div.postcard  
+	h1,
+ div.postcard  h2, div.postcard  h3 { color:#922521;} div.postcard 
+	a {
+ color:#2F6191;} div.postcard 
+	td { font-family:Helvetica, Arial;
+ font-size:12px;} div.postcardDummy, div.postcard 
+	td p, div.postcard 
+ #mainTable p, div.postcard  .sideBack p {margin:13px 0;} div.postcard
+ 
+p.formTroubleLink { font-size:11px; font-family:Helvetica, Arial;}
+ </style><table width="100%" height="100%" border="0" cellspacing="0"
+ cellpadding="0">
+  <tbody><tr>
+    <td align="center" valign="top"
+ bgcolor="#F3F5F4" style="font-size:12px; font-family:Helvetica, Arial;
+ padding-top:10px;">
+      
+      <div>
+      	<table width="720" border="0"
+ cellpadding="0" cellspacing="0">
+        	<tbody><tr>
+       	   		<td
+ width="100%">
+                   <div>
+                   <table
+ width="100%" border="0" cellpadding="0" cellspacing="0">
+                  
+ 		      <tbody><tr><td width="100%">
+             				 <table
+ width="720" border="0" align="center" cellpadding="0" cellspacing="0"
+ id="head">
+                                <tbody><tr>
+                        
+          <td style="font-size:0;">
+                                 
+ <div id="clickthru_banner" style="font-size:0px;">
+                   
+               <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127275"><img
+ src="http://yoder.congressnewsletter.net/images/yoder_banner.jpg" alt="" width="720" height="177"
+ usemap="#Map" border="0"></a></div></td>
+                               
+ </tr>
+                                <tr>
+                           
+       <td bgcolor="#75a4c5" height="25" valign="middle"
+ style="font-family:Helvetica, Arial; border: #75a4c5 solid; border-width:0 5px;">
+ 
+                                   <div id="clickthru_topnav">
+       
+                               <table width="100%" border="0"
+ cellpadding="0" cellspacing="0">
+                                       
+ <tbody><tr>
+                                          <td width="8%"
+ align="center" style="font-size:12px; font-family:Helvetica, Arial;
+ border-right:1px solid #CFCFCF; padding-left:2px;">
+                          
+                  <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127275" target="_blank"
+ style="color:#ffffff; font-weight:bold; text-decoration:none;">HOME</a>
+               
+                           </td>
+                                     
+     <td width="13%" align="center" style="font-size:12px;
+ font-family:Helvetica, Arial; border-right:1px solid #CFCFCF;">
+                 
+                           <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127276" target="_blank"
+ style="color:#ffffff; font-weight:bold; text-decoration:none;">ABOUT ME</a>
+  
+                                        </td>
+                        
+                  <td width="15%" align="center"
+ style="font-size:12px; font-family:Helvetica, Arial; border-right:1px solid #CFCFCF;"><a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127277" target="_blank" style="color:#ffffff; font-weight:bold;
+ text-decoration:none;">CONTACT ME</a></td>
+                           
+               <td width="16%" align="center" style="font-size:12px;
+ font-family:Helvetica, Arial; border-right:1px solid #CFCFCF;">
+       
+                                     <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127278"
+ target="_blank" style="color:#ffffff; font-weight:bold;
+ text-decoration:none;">SERVING YOU</a>
+                                          </td>
+           
+                               <td width="17%" align="center"
+ style="font-size:12px; font-family:Helvetica, Arial; border-right:1px solid
+ #CFCFCF;"><a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127279" target="_blank" style="color:#ffffff;
+ font-weight:bold; text-decoration:none;">MEDIA CENTER</a></td>
+            
+                          
+                                         
+ <td width="16%" align="center" style="font-size:12px;
+ font-family:Helvetica, Arial; border-right:1px solid #CFCFCF;"><a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127280"
+ target="_blank" style="color:#ffffff; font-weight:bold;
+ text-decoration:none;">OUR DISTRICT</a></td>
+                                         
+ <td width="15%" align="center" style="font-size:12px; padding-right:2px;
+ font-family:Helvetica, Arial;"><a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127281" target="_blank"
+ style="color:#ffffff; font-weight:bold;
+ text-decoration:none;">RESOURCES</a></td>
+                                          
+                  
+                      </tr>
+                                     
+ </tbody></table>
+                                    </div>
+              
+                    </td>
+                               </tr>
+       
+                   </tbody></table>
+            			</td>
+             
+      </tr></tbody></table>
+                   </div>
+               
+ 	<div>
+                    <table width="720" border="0"
+ align="center" cellpadding="0" cellspacing="0">
+                      <tbody><tr>
+ 
+                       <td align="center" bgcolor="#f5f5f5"
+ style="border:5px solid #F5F5F5; border-top:none;"><table width="100%"
+ border="0" cellspacing="0" cellpadding="0" style="border-collapse:separate">
+  
+                        <tbody><tr>
+                           
+ <td><table width="100%" border="0" align="center" cellpadding="0"
+ cellspacing="0">
+                              <tbody><tr>
+                     
+           <td align="left"><table width="100%" border="0"
+ cellspacing="0" cellpadding="0">
+                                  <tbody><tr>
+  
+                                  <td width="500" valign="top"
+ id="main_area"><table width="100%" border="0" align="center" cellpadding="7"
+ cellspacing="5">
+                                      <tbody><tr>
+   
+                                     <td width="100%" align="left"
+ id="mainTable" style="font-size:14px; font-family:Helvetica, Arial,
+ Helvetica, sans-serif; color:#000;"><div id="date" align="right"
+ style="font-size:12px; float:right; font-weight:bold; color:#333;">
+            
+                              May 08, 2017
+                                 
+       </div>
+                                          <div
+ id="content_main" class="mailingContentArea ui-sortable"><div class="editable
+ draggable defaultContent" style="display: block;"><h1>
+	Last Week in
+ Congress</h1>
+<h3>
+	House Votes to Fix Our Broken Health Care
+ System</h3>
+<p style="text-align: center;">
+	<img alt="" height="182"
+ src="http://yoder.congressnewsletter.net//images/user_images/PassedAHCA.JPG"
+ width="350"></p>
+<p>
+	On Thursday, the House of Representatives took the
+ first step in fulfilling our promise to repeal and replace
+ Obamacare.</p>
+<p>
+	There are two questions I answer with respect to every vote
+ on the House floor: is this the right bill for my district and will it
+ make the future of America stronger. The <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127282"
+ target="_blank"><strong>American Health Care Act</strong></a> succeeds on
+ both.</p>
+<div>
+	Obamacare’s big government mandates, taxes, and spending
+ are destroying our health care system today. The last insurance
+ providers are pulling out of Iowa and dozens of counties across Tennessee and
+ Virginia – leaving millions on the individual market with no options
+ for care – and Kansas could be
+ next.</div>
+<div>
+	&nbsp;</div>
+<div>
+	That leaves us with a choice between two solutions to repair our broken
+ system. We can turn to socialized medicine and a single payer system
+ that puts government in control, or we can restore a system of
+ personalized medicine where patients and doctors are in control. Rather than
+ giving the federal government full control of hospitals, lowering the
+ quality of care, and costing our country more than $30 trillion – what
+ single payer will do – I voted to choose markets over mandates,
+ innovation over regulation, and patients over
+ bureaucrats.</div>
+<div>
+	&nbsp;</div>
+<div>
+	The AHCA makes necessary and immediate repairs to the
+ devastated system left in Obamacare’s wake, and will provide more
+ choice, more competition, lower premiums, and greater access to care in
+ the future. It reduces taxes and spending, and lowers federal deficits.
+ It restores freedom by repealing the failed individual and employer
+ mandates.</div>
+<div>
+	&nbsp;</div>
+<div>
+	Let me be clear – no one
+ with preexisting conditions can or will be denied affordable coverage
+ under the AHCA now or ever. In reality, our bill frees states to develop
+ innovative ways to provide them with better coverage than they receive
+ now and invests nearly $140 billion to help them succeed in doing
+ it.</div>
+<div>
+	&nbsp;</div>
+<div>
+	Instead of forcing Americans to buy
+ plans they don’t want or can’t afford, regulating insurance providers
+ out of the market altogether, or leaving people with no options to
+ choose from, the AHCA makes the necessary changes to repair our health
+ care system that’s collapsing before our eyes. The bill now heads to the
+ Senate for approval. I urge my Senate colleagues to send the AHCA to
+ the President's desk for signature so we can fix our broken health
+ care system,</div>
+</div><div id="content_51_0.0053970612831812925"
+ contenttype="system" class="editable draggable"><p class="shareLink"><a
+ target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png" alt=""></a></p></div><div class="editable draggable
+ defaultContent" style="display: block;"><h3>
+	The American Health
+ Care Act</h3>
+<p style="text-align: center;">
+	<img alt="" height="181"
+ src="http://yoder.congressnewsletter.net//images/user_images/AHCA_1.JPG" width="350"></p>
+<div>
+	So what does the <strong>American Health
+ Care Act (AHCA)</strong> actually do? Opponents of health care reform
+ have been spreading misinformation and using scare tactics to drum up
+ opposition to the bill. Throughout the process, I spent a lot of time
+ reading and understanding the bill and its amendments that were added
+ along the way. Here's what the bill accomplishes by repealing and
+ replacing Obamacare and making much-needed fixes to our broken health care
+ system:&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Guarantees
+ Coverage for Americans with Preexisting Conditions:</strong>&nbsp;The AHCA
+ bans health insurance providers from denying coverage or charging a
+ patient with preexisting conditions higher premiums as long as they
+ maintain continuous coverage, or sign up for new coverage within 63 days of
+ exiting a previous insurance
+ plan.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Establishes a Patient and State Stability Fund and Federal
+ Invisible Risk Sharing Program:</strong>&nbsp;The AHCA provides states
+ with nearly $140 billion to design programs that meet the unique needs of
+ their patient populations, help low-income Americans afford health
+ care, and provide a backstop safety net for Americans with preexisting
+ conditions. This includes $15 billion specifically for mental health
+ care, substance abuse care, and maternity and newborn
+ care.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Keeps Age 26 Provision:</strong>&nbsp;We
+ recognize that some provisions of Obamacare are positive. The AHCA
+ continues to help young adults access health insurance and stabilize the
+ marketplace by allowing individuals to stay on their parents’ plan
+ until they are 26.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Helps
+ Americans Access Affordable, Quality Health Care:</strong>&nbsp;The AHCA
+ establishes a monthly tax credit between $2,000 and $14,000 a year for
+ low- and middle-income individuals and families who don’t receive
+ insurance through work or a government program. Americans can use this tax
+ credit to purchase the insurance plans of their
+ choice.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Empowers Individuals and
+ Families:</strong>&nbsp;Rather than relying on the government under Obamacare, the AHCA
+ empowers Americans' to spend their health care dollars the way they want
+ and need by nearly doubling the amount of money people can contribute
+ to their Health Savings Accounts
+ (HSAs).</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Repeals $1 Trillion in Obamacare Taxes:</strong> Under
+ Obamacare, job-killing taxes have increased premium costs and limited
+ options for patients and health care providers. The AHCA repeals these
+ taxes that hit the middle class and the poor the hardest, like taxes on
+ prescription drugs, over-the-counter medications, health-insurance
+ premiums, and medical
+ devices.&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Restores Freedom by Eliminating the Individual and Employer
+ Mandates:</strong> Millions of workers, families, and job creators were
+ forced into expensive Obamacare plans they don’t want and can't afford.
+ The AHCA does away with these
+ mandates.&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Modernizes and Strengthens Medicaid:</strong> The
+ AHCA transitions to a “per capita allotment” for Medicaid so states can
+ better serve the poor and Americans with disabilities who rely on the
+ program. These reforms represent the largest entitlement reform in a
+ generation and put the program on a sustainable fiscal path. After all,
+ if the program becomes insolvent it won't be able to serve anyone.
+ &nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<strong>Promotes Work and
+ Individual Freedom:</strong>&nbsp;The AHCA incentivizes able-bodied adults to
+ obtain private health care through employment so Medicaid can be
+ refocused on helping the most vulnerable.&nbsp;</div>
+</div><div
+ id="content_51_0.1988600121626969" contenttype="system" class="editable
+ draggable" style="display: block;"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png" alt=""></a></p></div><div class="editable draggable
+ defaultContent" style="display: block;"><h3>
+	Chairing My First Bipartisan
+ Legislative Branch Subcommittee Hearing</h3>
+<p style="text-align:
+ center;">
+	<img alt="" height="233"
+ src="http://yoder.congressnewsletter.net//images/user_images/18268267_1487437711309137_376652407680983368_n.jpg"
+ width="350"><br>
+	<span style="font-size:11px;">Kevin and Ranking Member
+ Ryan holding a hearing featuring proponents of making CRS reports
+ public.</span></p>
+<div>
+	It was exciting to Chair my first bipartisan
+ <strong>Legislative Branch Subcommittee</strong> Hearing with Ranking
+ Member Congressman Tim Ryan (D-OH) on increasing transparency in
+ Congress. On Wednesday, a bill was introduced that would require all the
+ reports produced by the Congressional Research Service (CRS) to be
+ published for the American people to access. Right now, CRS reports are only
+ available to Members of Congress and their
+ staff.</div>
+<div>
+	&nbsp;</div>
+<div>
+	Throughout my career in Congress I've been a proponent of
+ more transparency and accountability in government. At last week's
+ hearing, we heard from proponents of the idea of making these reports
+ public. I look forward to working with Ranking Member Ryan as we continue
+ this debate and work with other members of committee to advance the
+ process on this legislation.</div>
+</div><div
+ id="content_51_0.7660735477209255" contenttype="system" class="editable draggable"
+ style="display: block;"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div><div class="editable draggable defaultContent"
+ style="display: block;"><h3>
+	Prioritizing Investments in Medical Research &amp;
+ National Defense</h3>
+<p style="text-align: center;">
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127268"><img alt="" height="205"
+ src="http://yoder.congressnewsletter.net//images/user_images/1_23.PNG" width="350"><br>
+	<span
+ style="font-size:11px;">Click here to watch Kevin's remarks on the 2017 omnibus funding
+ bill.</span></a></p>
+<p>
+	Last week, I joined my colleagues in the
+ House in passing the <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127269"
+ target="_blank"><strong>appropriations bill</strong></a> to fund the federal government through the end
+ of the 2017 fiscal year on September 30th. It is a bipartisan
+ agreement that shows Congress is working with the Trump Administration to keep
+ the government running smoothly to ensure seniors depending on
+ Medicare and Social Security, our veterans depending on VA benefits, and
+ active duty military depending on their pay checks are receiving the
+ services they need, while also achieving significant conservative gains
+ compared to the last eight years. It makes needed investments in medical
+ research – including another $2 billion for research at the NIH for a
+ 13% increase over the last two years – as well as education,
+ protecting our border, and our soldiers.</p>
+</div><div
+ id="content_51_0.40867015456981837" contenttype="system" class="editable draggable"
+ style="display: block;"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div><div class="editable draggable defaultContent"
+ style="display: block;"><h3>
+	Empowering Workers to Better Balance Work, Life,
+ and Family</h3>
+<p style="text-align: center;">
+	<img alt=""
+ height="195"
+ src="http://yoder.congressnewsletter.net//images/user_images/9_7.PNG" width="350"></p>
+<p>
+	It's time that we brought the American
+ workforce into the 21st century. In today's day and age, working families
+ need flexibility, whether that's for single parents in the workforce or
+ students who are trying to pursue a college degree while working a
+ full time job. That's why the House of Representatives passed the<strong>
+ <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127272" target="_blank">Working Families Flexibility
+ Act</a></strong>&nbsp;last week, to take down barriers to workers who need
+ more freedom to balance work and personal obligations. This bill gives
+ workers the flexibility to spend time with family, attend teacher
+ conferences, and care for aging parents by allowing private-sector
+ employers to offer their employees the choice of paid time off in lieu of
+ cash wages for overtime hours.</p>
+</div><div
+ id="content_51_0.7517125201391957" contenttype="system" class="editable draggable"
+ style="display: block;"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div><div class="editable draggable defaultContent" style="display:
+ block;"><h1>
+	Meetings in DC</h1>
+<h3>
+	Kansas Community
+ Bankers</h3>
+<p style="text-align: center;">
+	<img alt="" height="233"
+ src="http://yoder.congressnewsletter.net//images/user_images/DSC_0652.JPG"
+ width="350"></p>
+<p>
+	I always enjoy meeting with some of the local
+ community bankers to listen to their thoughts and concerns about policies in
+ DC. Last week, I met with the <strong>Kansas Community Bankers</strong>
+ to discuss the steps Congress has taken to reduce burdensome
+ regulations on the local banks that serve the Third District. Thanks for
+ taking the time to meet with me.&nbsp;</p>
+</div><div
+ id="content_51_0.7629963480020554" contenttype="system" class="editable draggable"
+ style="display: block;"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div><div class="editable draggable defaultContent"><h3>
+	ZERO
+ TO THREE</h3>
+<p style="text-align: center;">
+	<img alt=""
+ height="233"
+ src="http://yoder.congressnewsletter.net//images/user_images/DSC_0653.JPG" width="350"><br>
+	<span style="font-size:11px;">Kevin
+ with&nbsp;Michelle Taylor and her daughter Elliana Jaymes Henry of Overland
+ Park.&nbsp;</span></p>
+<p>
+	As a strong supporter of early childhood
+ education, I firmly believe in the importance of investing in the early
+ years of children's lives. Last week, I met with ZERO TO THREE to
+ discuss why Congress should “Think Babies” to ensure that babies and
+ toddlers benefit from the early connections that are critical to their
+ well-being and development. Thanks to Michelle Taylor and her daughter
+ Elliana Jaymes Henry of Overland Park for coming to Capitol Hill to help
+ raise awareness to what babies and families need to thrive including
+ early childhood education and workforce issues.</p>
+</div><div
+ id="content_51_0.6991576089333764" contenttype="system" class="editable
+ draggable"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div><div class="editable draggable defaultContent"><h1>
+	Around the
+ District</h1>
+<h3>
+	Military Makeover for Zeke &amp; Lacy Crozier</h3>
+<p
+ style="text-align: center;">
+	<img alt="" height="404"
+ src="http://yoder.congressnewsletter.net//images/user_images/Gunny.JPG"
+ width="350"><br>
+	<span style="font-size:11px;">Kevin meeting R. Lee Ermey before
+ the Croziers' Military Makeover unveiling.</span></p>
+<p>
+	Last Friday
+ it was fun to help R. Lee Ermey, more famously known as “The Gunny,” a
+ host for <strong>Lifetime's Military Makeover</strong>, give my friend
+ and local veteran Zeke Crozier and his family a home makeover in
+ Overland Park. Many local veterans organizations supported this project
+ for the Croziers and I was excited to be a part of it. Years ago, Zeke
+ came to my office for assistance with dealing with the
+ <strong>Department of Veterans Affairs (VA)</strong>. Congratulations to Zeke and Lacy
+ on this exciting recognition. I'm thankful for Zeke and the service
+ of all of our veterans who have sacrificed to keep us safe.</p>
+<p
+ style="text-align: center;">
+	<img alt="" height="400"
+ src="http://yoder.congressnewsletter.net//images/user_images/Vets_1.JPG"
+ width="350"><br>
+	<span style="font-size:11px;">Kevin speaking with several local
+ veterans, including Lacy Crozier's grandfather.</span></p>
+</div><div
+ id="content_51_0.9256766751973877" contenttype="system" class="editable
+ draggable"><p class="shareLink"><a target="_blank"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=share&amp;piv=2100141914.5469.823&amp;snid=1"><img
+ src="http://yoder.congressnewsletter.net/common/images/sn-facebook-like.png"
+ alt=""></a></p></div></div><div class="contentArea_end"></div></td>
+                 
+                     </tr>
+                                   
+ </tbody></table></td>
+                                    <td align="right"
+ valign="top" class="sideBack" bgcolor="#eeeeee"><table width="220"
+ border="0" align="center" cellpadding="0" cellspacing="5">
+               
+                       <tbody><tr>
+                                   
+     <td align="center" style="padding-top:5px; font-size:12px;
+ font-family:Helvetica, Arial;"><div id="content_right_sidebar"
+ class="mailingContentArea ui-sortable"><div class="editable draggable
+ defaultContent" style="display: block;"><h3>
+	American Health Care Act: Myth vs.
+ Fact</h3>
+<div>
+	<div>
+		<strong>MYTH: The American Health Care Act will
+ price those with preexisting conditions out of the market, making
+ health care unaffordable for
+ them.</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<strong>FACT: </strong>Under the AHCA, rules that prevent
+ insurance providers from denying coverage or charging more expensive rates
+ based on health status remain the law of the
+ land.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		If states can show they have new innovative
+ solutions to protect individuals with preexisting conditions in a better way,
+ they can waive out of this regulatory framework ONLY for individuals
+ who have gone more than two months without purchasing insurance. <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127284" target="_blank">Sec.
+ 136(b)(3)(F)</a></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		As long as you have continuous coverage, you CANNOT
+ be charged more based on health status in ANY state. <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127257" target="_blank">Sec.
+ 2710A(b)(1)(B)</a></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		Even if you have a gap in coverage, insurers can only charge
+ you a higher premium for 12 months, then you are returned to paying
+ the same premiums as everyone else. <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127257"
+ target="_blank">Sec. 2710A(b)(3)(A)</a></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		On top of
+ the $130 billion investment in risk mitigation programs in the bill,
+ the AHCA devotes $8 billion over five years to further stabilize the
+ premiums of the small subset of people who would be affected. <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127258" target="_blank">Sec. 132</a></div>
+</div>
+</div><div
+ class="editable draggable defaultContent" style="display:
+ block;"><h3>
+	<em>Washington Post</em>: Fact Checking Critic's Claims About the
+ AHCA</h3>
+<p style="text-align: center;">
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127259"
+ target="_blank"><img alt="" height="25"
+ src="http://yoder.congressnewsletter.net//images/user_images/WaPo1_2.JPG" width="150"><br>
+	<img alt="" height="116"
+ src="http://yoder.congressnewsletter.net//images/user_images/FourPinocchios.JPG" width="150"><br>
+	<span style="font-size:11px;">Click here
+ to read the Washington Post's fact check on claims about the
+ AHCA.</span></a></p>
+<p>
+	<strong>Despite critics’ claims, the GOP health bill
+ doesn’t classify rape or sexual assault as a preexisting
+ condition</strong></p>
+<p>
+	One of the viral claims about the American Health Care
+ Act (AHCA), the new Republican bill to replace the Affordable Care Act
+ (a.k.a. Obamacare), was this claim that the AHCA “made being rape
+ survivor a pre-existing condition,” or that it “classified rape as a
+ pre-existing condition.”</p>
+<p>
+	Both media coverage and hyperbole among
+ advocates are at fault for creating a misleading representation of the
+ House GOP health bill. We wavered between Three and Four Pinocchios,
+ but the out-of-control rhetoric and the numerous assumptions pushed us
+ to <strong>FOUR PINOCCHIOS</strong>.</p>
+</div><div class="editable
+ draggable defaultContent" style="display: block;"><h3>
+	<em>Kansas City
+ Star</em>: Congress Invests in Medical Research</h3>
+<p
+ style="text-align: center;">
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127260" target="_blank"><img alt=""
+ height="15"
+ src="http://yoder.congressnewsletter.net//images/user_images/3_10.PNG" width="150"><br>
+	<img alt="" height="114"
+ src="http://yoder.congressnewsletter.net//images/user_images/2_13.PNG"
+ width="150"><br>
+	<span style="font-size:11px;">Click here to read the full article from
+ the <em>Kansas City Star</em>.</span></a></p>
+<div>
+	<em><strong>BY
+ BRYAN LOWRY</strong></em></div>
+<div>
+	<em><strong>KANSAS CITY
+ STAR</strong></em></div>
+<div>
+	&nbsp;</div>
+<div>
+	U.S. House and Senate
+ negotiators on Monday released a more than $1 trillion omnibus budget bill
+ that will fund the federal government through the end of September.
+ The bill will have to be approved by both chambers of Congress by the
+ end of Friday, when a continuing resolution to fund the federal
+ government expires.</div>
+<div>
+	&nbsp;</div>
+<div>
+	The bipartisan plan would
+ provide $34 billion to the National Institutes of Health, a 6.3
+ percent increase from the previous
+ year.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<div>
+		U.S. Rep. Kevin Yoder, a Kansas Republican, said the proposed
+ increase for this year should be seen as a sign of congressional
+ Republicans’ commitment to medical research funding, noting that the
+ GOP-controlled Congress also passed a $2 billion increase in the final year
+ of the Obama administration.</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		“No
+ matter who’s president of the United States, our commitment remains,”
+ Yoder said. “Because we have met with the families. We have had
+ heartfelt conversations with constituents who are suffering from an incurable
+ disease.”</div>
+</div>
+</div><div
+ id="content_668_0.31603608865567834" contenttype="saved" class="editable draggable" style="display:
+ block;"><h3>
+	Third District Trivia&nbsp;</h3>
+<p>
+	Last week was Small
+ Business Week. Small businesses employ what percept of the country's
+ private workforce?</p>
+<p>
+	Send your answers to
+ <b>haley.brady@mail.house.gov</b> and the first correct response will receive a shout out in
+ next week's newsletter.</p>
+<p>
+	Congratulations to last week's winner
+ <strong>Dyrk Dugan</strong> from Overland Park!</p>
+<p>
+	<strong>Last
+ week's answer:</strong>&nbsp; The only NFL team that has a longer
+ streak than Kansas City without drafting a first-round QB is the New
+ Orleans Saints, who have not selected a quarterback since 1971 when they
+ picked Hall of Famer Archie Manning.&nbsp;</p>
+</div><div class="editable
+ draggable defaultContent" style="display: block;"><h3>
+	Legislative
+ Look Ahead</h3>
+<p>
+	Members of the House of Representatives will work
+ from their respective districts this week.&nbsp;</p>
+</div><div
+ class="editable draggable defaultContent" style="display:
+ block;"><h3>
+	Legislative Wrap Up</h3>
+<div>
+	<strong>MONDAY, MAY
+ 1ST</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127261" target="_blank">H.R. 910
+ </a>– Fair Access to Investment Research Act &nbsp;– <strong>PASSED 405
+ - 2 (YES)</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127262"
+ target="_blank">H.R. 1312 </a>– Small Business Capital Formation
+ Enhancement Act – <strong>PASSED 406 - 0
+ (YES)</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127263" target="_blank">H.R. 1366 </a>– U.S.
+ Territories Investor Protection Act &nbsp;–<strong> PASSED BY VOICE
+ VOTE</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127264"
+ target="_blank">H.R. 657</a> – Follow the Rules Act –<strong> PASSED 407 -
+ 0 (YES)</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127265"
+ target="_blank">&nbsp;H.R. 1242 </a>– 400 Years of African-American
+ History Commission Act - <strong>PASSED BY
+ VOICE&nbsp;</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<div>
+		<strong>TUESDAY, MAY
+ 2ND</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127266"
+ target="_blank">H.R. 1679</a> – FEMA Accountability, Modernization and Transparency Act
+ &nbsp;– <strong>PASSED 419 - 0
+ (YES)</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127272" target="_blank">H.R. 1180</a> –
+ Working Families Flexibility Act – <strong>PASSED 229 - 197
+ (YES)</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<div>
+			<strong>WEDNESDAY, MAY
+ 3RD</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127267" target="_blank">H.R. 1665</a> – Disaster
+ Declaration Improvement Act – <strong>PASSED 425 - 0
+ (YES)</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			Concurring in the Senate Amendment to
+ <a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127269" target="_blank">H.R. 244</a> – Consolidated
+ Appropriations Act – <strong>ADOPTED 309 - 118
+ (YES)</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127270" target="_blank">H.R.
+ 1678 </a>– To amend the Robert T. Stafford Disaster Relief and Emergency
+ Assistance Act concerning the statute of limitations for actions to
+ recover disaster or emergency assistance payments, and for other
+ purposes, as amended – <strong>PASSED 423 - 0
+ (YES)</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<strong>THURSDAY, MAY
+ 4TH</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127271" target="_blank">H.R.
+ 2192</a> – To amend the Public Health Service Act to eliminate the
+ non-application of certain State waiver provisions to Members of
+ Congress and congressional staff – <strong>PASSED 429 - 0
+ (YES)</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127273"
+ target="_blank">H.R. 1628 </a>– American Health Care Act – <strong>PASSED 217 - 213
+ (YES)</strong></div>
+		<div>
+		</div>
+		<div>
+			<a
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127274"
+ target="_blank">H.R. 1644 </a>– Korean Interdiction and Modernization of
+ Sanctions Act, as amended – <strong>PASSED 419 - 1
+ (YES)</strong></div>
+		<div>
+			&nbsp;</div>
+		<div>
+			&nbsp;</div>
+	</div>
+	<div>
+		&nbsp;</div>
+</div>
+</div></div><div
+ class="contentArea_end"></div></td>
+                                      </tr>
+                         
+           </tbody></table></td>
+                                 
+ </tr>
+                                </tbody></table></td>
+             
+                 </tr>
+                           
+ </tbody></table></td>
+                          </tr>
+                       
+ </tbody></table></td>
+                      </tr>
+                      <tr>
+    
+                    <td bgcolor="#75a4c5" align="center"
+ style="color:#dddddd; font-size:11px; font-family:Helvetica, Arial; border-top:4px
+ solid #245782;">
+                          <table cellpadding="5"
+ cellspacing="3" width="100%">
+                           
+                
+            <tbody><tr>
+                              <td width="25%"
+ align="center" valign="top" style="font-family:Helvetica, Arial;
+ font-size:12px; color:#FFF; border-right:1px solid
+ #CFCFCF;"><strong>Washington, DC</strong><br>
+2433 Rayburn HOB<br>
+Washington, DC
+ 20515<br>
+Phone: (202) 225-2865<br>
+Hours: Monday-Friday <br>
+9:00AM -6:00PM EST
+ </td>
+                              <td width="25%" align="center"
+ valign="top" bgcolor="#75a4c5" style="font-family:Helvetica, Arial;
+ font-size:12px; color:#FFF;"><strong>Overland Park</strong><br>
+7325 W. 79th
+ St.<br>
+Overland Park, KS 66204<br>
+Phone: (913) 621-0832<br>
+Fax:
+ (913) 621-1533<br>
+Hours: Monday-Friday <br>
+8:00AM -5:00PM CST </td>
+  
+                          </tr>
+                         
+ </tbody></table>
+                        </td>
+                      </tr>
+       
+             </tbody></table>
+                  </div>
+       
+ 		</td>
+        	</tr>
+        </tbody></table>
+      </div>
+      <div>
+    
+    <table>
+          <tbody><tr>
+            <td style="padding:10px
+ 0; color:#ccc; font-family:Helvetica, Arial; font-size:12px;"
+ align="center">
+              <div id="clickthru_privacy">
+                <a
+ style="color:#000000;"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=unsubscribe&amp;gpiv=2100141914.5469.823&amp;gen=1" target="_blank">Unsubscribe</a>
+           
+     |
+                <a style="color:#000000;"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=profile&amp;gpiv=2100141914.5469.823&amp;gen=1"
+ target="_blank">Update My Profile</a>
+				|
+                 <a style="color:#000000;"
+ href="http://yoder.congressnewsletter.net/mail/util.cfm?mailaction=clickthru&gpiv=2100141914.5469.823&gen=1&mailing_linkid=127283" target="_blank">Privacy Policy</a>
+              </div>
+  
+          </td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <div>
+      </div></td>
+  </tr>
+</tbody></table>
+<style
+ type="text/css">
+body, html { margin:0;}	
+	.form_container { border:1px solid
+ #fff; margin-bottom:15px;}
+	.form_content{
+	 border:1px solid #ccc;
+ background:#f9f9f9; padding:5px;
+	}
+p.formSubmitMsg  { font-size:11px;
+ font-family: Arial;}
+p.formTroubleLink { font-size:11px;
+ font-family:Helvetica, Arial;}
+	p.formHeader { padding:4px 0 0;
+ font-family:Helvetica, Arial; margin-top:0px; font-size:16px; color:#922521;
+ font-weight:bold;}
+	form { padding:0px; margin:0px;}
+	.form_content p.formQuestion
+ {font-weight:bold;padding-left:5%;text-align:left;}
+	.form_content p {
+ text-align:center;}
+	.form_content p.formAnswer {text-align:left;
+ padding-left:5%;}
+	p.submitbutton input{
+		color:#333;
+ font-family:Helvetica, Arial; font-weight:bold; background-color:#eee; border:1px solid
+ #ccc; min-width:80px; height:22px; font-size:11px; cursor:pointer;
+	}
+ 
+	h1, h2, h3 { color:#922521;}
+	a { color:#2F6191;}
+	td {
+ font-family:Helvetica, Arial; font-size:12px;}
+	td p, #mainTable p, .sideBack p
+ {margin:13px 0;}
+
+</style>
+<map name="Map">
+  <area shape="rect"
+ coords="595,4,615,27" href="http://twitter.com/#!/RepKevinYoder"
+ target="_blank">
+  <area shape="rect" coords="620,4,643,26"
+ href="http://www.facebook.com/CongressmanKevinYoder" target="_blank">
+  <area shape="rect"
+ coords="647,4,667,24" href="http://instagram.com/repkevinyoder"
+ target="_blank">
+  <area shape="rect" coords="672,2,694,24"
+ href="http://www.youtube.com/user/RepYoder" target="_blank">
+  <area shape="rect"
+ coords="695,2,718,25"
+ href="http://yoder.house.gov/common/rss/index.cfm?rss=49" target="_blank">
+</map><!-- gateway mail end --></body></html>
+
+--__NEXTPART_1494282494050--
