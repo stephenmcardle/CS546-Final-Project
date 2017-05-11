@@ -73,16 +73,19 @@ function markMailSeen(uid) {
     });
 }
 
+var seq_list = []
+
 // Save all of the eml files from new emails to eml_directory
 imap.once('ready', function() {
 	openInbox(function(err, box) {
 	  if (err) throw err;
-	  imap.search([ 'UNSEEN', ['SINCE', 'May 07, 2017'] ], function(err, results) {
+	  imap.search([ 'UNSEEN'/*, ['SINCE', 'May 07, 2017']*/ ], function(err, results) {
 	    if (err) throw err;
 	    if (results.length !== 0) {
 		    var f = imap.fetch(results, { bodies: '' });
 		    f.on('message', function(msg, seqno) {
 		      console.log('Message #%d', seqno);
+		      seq_list.push(seqno);
 		      var prefix = '(#' + seqno + ') ';
 		      msg.on('body', function(stream, info) {
 		        //console.log(prefix + 'Body');
@@ -109,7 +112,16 @@ imap.once('ready', function() {
 });
 
 imap.once('error', function(err) {
-  console.log(err);
+  	console.log(err);
+  	var currentdate = new Date();
+  	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear() 
+  			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  	var file = fs.createWriteStream('seqno_error_' + datetime + '.txt');
+	file.on('error', function(err) { /* error handling */ });
+	arr.forEach(function(v) { file.write(v.join(', ') + '\n'); });
+	file.end();
+  	imap.end();
+  	throw error;
 });
 
 imap.once('end', function() {

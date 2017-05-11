@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
 	const branch = req.branch;
 	const party = req.party;
 	emailData.findEmails(first, last, phrase, branch, party).then((emails) => {
-
+		res.json(emails);
 	});
 });
 
