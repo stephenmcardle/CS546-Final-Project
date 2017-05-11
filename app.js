@@ -1,8 +1,22 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const configRoutes = require("./routes");
+const exphbs  = require('express-handlebars');
+
 var fs = require('fs'), fileStream;
-var Imap = require('imap'),
+const Imap = require('imap'),
 	inspect = require('util').inspect;
-var util = require('util');
-var spawn = require('child_process').spawn;
+const util = require('util');
+const spawn = require('child_process').spawn;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+configRoutes(app);
 
 
 // Delete all files from eml_directory
@@ -55,7 +69,7 @@ function markMailSeen(uid) {
       if (err) {
         throw err
       }
-      console.log(err)
+      //console.log(err)
     });
 }
 
@@ -65,29 +79,31 @@ imap.once('ready', function() {
 	  if (err) throw err;
 	  imap.search([ 'UNSEEN', ['SINCE', 'May 07, 2017'] ], function(err, results) {
 	    if (err) throw err;
-	    var f = imap.fetch(results, { markSeen: true, bodies: '' });
-	    f.on('message', function(msg, seqno) {
-	      console.log('Message #%d', seqno);
-	      var prefix = '(#' + seqno + ') ';
-	      msg.on('body', function(stream, info) {
-	        //console.log(prefix + 'Body');
-	        stream.pipe(fs.createWriteStream('eml_directory/msg' + seqno + '.eml'));
-	      });
-	      msg.once('attributes', function(attrs) {
-	      	markMailSeen(attrs.uid);
-	        //console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
-	      });
-	      msg.once('end', function() {
-	        //console.log(prefix + 'Finished');
-	      });
-	    });
-	    f.once('error', function(err) {
-	      //console.log('Fetch error: ' + err);
-	    });
-	    f.once('end', function() {
-	      console.log('Done fetching all messages!');
-	      imap.end();
-	    });
+	    if (results.length !== 0) {
+		    var f = imap.fetch(results, { bodies: '' });
+		    f.on('message', function(msg, seqno) {
+		      console.log('Message #%d', seqno);
+		      var prefix = '(#' + seqno + ') ';
+		      msg.on('body', function(stream, info) {
+		        //console.log(prefix + 'Body');
+		        stream.pipe(fs.createWriteStream('eml_directory/msg' + seqno + '.eml'));
+		      });
+		      msg.once('attributes', function(attrs) {
+		      	markMailSeen(attrs.uid);
+		        //console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
+		      });
+		      msg.once('end', function() {
+		        //console.log(prefix + 'Finished');
+		      });
+		    });
+		    f.once('error', function(err) {
+		      //console.log('Fetch error: ' + err);
+		    });
+		    f.once('end', function() {
+		      console.log('Done fetching all messages!');
+		      imap.end();
+		    });
+		} else console.log("Nothing to fetch");
 	  });
 	});
 });
@@ -119,4 +135,8 @@ imap.once('end', function() {
 imap.connect();
 
 // TODO Add the new emails from emails.json to the database
-// TODO add express server
+
+
+app.listen(3000, () => {
+	console.log("Server is running on http://localhost:3000");
+});

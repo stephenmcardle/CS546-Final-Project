@@ -39,6 +39,7 @@ jspm_packages
 # Text files
 *.txt
 
-# Ignore emails
+# Ignore email parser related files
 emails.json
 eml_directory
+email_parser.py
