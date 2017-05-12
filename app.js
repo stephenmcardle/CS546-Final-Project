@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const configRoutes = require("./routes");
 const exphbs  = require('express-handlebars');
+const data = ("../data");
+const emails = data.emails;
 
 var fs = require('fs'), fileStream;
 const Imap = require('imap'),
@@ -141,6 +143,17 @@ imap.once('end', function() {
 
 	pythonProcess.on('close', function (code) {
 	  console.log('child process exited with code ' + code);
+	  // Add the new emails from emails.json to the database
+	  var obj;
+	  fs.readFile('file', 'utf8', function (err, data) {
+		  if (err) throw err;
+		  obj = JSON.parse(data);
+		  var newEmails = obj.toArray();
+		  //Not sure if this loop will work because insertEmail() is async
+		  for (var i = 0, i < newEmails.length; i++) {
+		  	emails.insertEmail(newEmails[i]);
+		  }
+	  });
 	});
 });
 

@@ -7,6 +7,7 @@ exports.insertEmail = function(email) {
 		return Promise.reject("Email must be in JSON format");
 
 	return emails().then((emailCollection) => {
+		//TODO add uuid to the email
     	return emailCollection.insertOne(email).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             }).then((newId) => {
