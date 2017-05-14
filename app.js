@@ -118,12 +118,12 @@ imap.once('error', function(err) {
   	var currentdate = new Date();
   	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear() 
   			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-  	var file = fs.createWriteStream('seqno_error_' + datetime + '.txt');
+  	var file = fs.createWriteStream('errors/seqno_error_' + datetime + '.txt');
 	file.on('error', function(err) { /* error handling */ });
-	arr.forEach(function(v) { file.write(v.join(', ') + '\n'); });
+	seq_list.forEach(function(v) { file.write(v.join(', ') + '\n'); });
 	file.end();
   	imap.end();
-  	throw error;
+  	throw err;
 });
 
 imap.once('end', function() {
@@ -150,7 +150,7 @@ imap.once('end', function() {
 		  obj = JSON.parse(data);
 		  var newEmails = obj.toArray();
 		  //Not sure if this loop will work because insertEmail() is async
-		  for (var i = 0, i < newEmails.length; i++) {
+		  for (var i = 0; i < newEmails.length; i++) {
 		  	emails.insertEmail(newEmails[i]);
 		  }
 	  });
