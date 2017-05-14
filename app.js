@@ -23,7 +23,7 @@ configRoutes(app);
 
 // Delete all files from eml_directory
 function removeFilesFrom(dirPath) {
-	try { 
+	try {
 		var files = fs.readdirSync(dirPath);
 	}
 	catch(e) {
@@ -116,7 +116,7 @@ imap.once('ready', function() {
 imap.once('error', function(err) {
   	console.log(err);
   	var currentdate = new Date();
-  	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear() 
+  	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear()
   			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
   	var file = fs.createWriteStream('errors/seqno_error_' + datetime + '.txt');
 	file.on('error', function(err) { /* error handling */ });
@@ -149,9 +149,9 @@ imap.once('end', function() {
 		  if (err) throw err;
 		  obj = JSON.parse(data);
 		  var newEmails = obj.toArray();
-		  //Not sure if this loop will work because insertEmail() is async
+		  //Not sure if this loop will work because addEmail() is async
 		  for (var i = 0; i < newEmails.length; i++) {
-		  	emails.insertEmail(newEmails[i]);
+		  	emails.addEmail(newEmails[i]);
 		  }
 	  });
 	});
