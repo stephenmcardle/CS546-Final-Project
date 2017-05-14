@@ -12,11 +12,11 @@ module.exports = (passport, LocalStrategy) => {
     passport.deserializeUser(function(user, done) {
         done(null, user);
     });
+
     passport.use(new LocalStrategy({
         passReqToCallback: true
-    },
-    function (req, username, password, done) {
-        data.users.findUserByUsername(username).then((user) => {
+    }, function (req, username, password, done) {
+        data.users.getUserByUsername(username).then((user) => {
             if(!bcrypt.compareSync(password, user.hashedPassword)) {
                 return done(null, false, req.flash('invalid', 'Invalid Password'));
             }
@@ -24,7 +24,6 @@ module.exports = (passport, LocalStrategy) => {
                 return done(null, user);
             }
         }).catch((err) => {
-            console.log(err);
             return done(null, false, req.flash('invalid', 'Invalid Username'));
         });
     }));
