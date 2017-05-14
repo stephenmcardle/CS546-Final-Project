@@ -43,3 +43,6 @@ jspm_packages
 emails.json
 eml_directory
 email_parser.py
+
+# Python
+*.pyc
