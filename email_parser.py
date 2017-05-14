@@ -12,10 +12,10 @@ class Email(object):
     def __init__(self, email_path):
         '''Initializes an instance of the Email class.'''
         self.path = email_path
-          
+
     def get_body(self):
         '''Stores the body of the email as an attribute, removing any whitespace characters and escapes.'''
-        fp = open(self.path)   
+        fp = open(self.path)
         msg = email.message_from_file(fp)
         if msg.is_multipart():
             for part in msg.walk():
@@ -29,7 +29,7 @@ class Email(object):
             if len(self.body) <= 16:
                 self.valid = False
             return
-        
+
     def get_header(self):
         '''Gets header information from the email and stores it as attributes.'''
         fp = open(self.path)
@@ -62,7 +62,7 @@ class Email(object):
                 else:
                     self.subject = item[1]
                     #self.subject = remove_non_ascii(self.subject)
-   
+
     def get_info(self):
         '''Returns a dictionary containing the api information of the sender of an email.'''
 	for member in self.congress:
@@ -105,7 +105,7 @@ class Email(object):
 				return beto_orourke()
         if self.name not in bad_names:
             bad_names.append(self.name)
-        
+
     def construct_dict(self,classifier):
         '''Constructs a dictionary of email information.'''
         self.get_header()
@@ -132,7 +132,7 @@ class Email(object):
             return email_dict
         except:
             return None
-        
+
 class Directory(Email):
     def __init__(self,directory):
         '''Initializes an instance of the Directory class.'''
@@ -142,14 +142,14 @@ class Directory(Email):
             self.classifier = load_pickle(settings.classifier['classifier_fp'])
         else:
             self.classifier = None
-        
+
     def dir_list(self):
         '''Returns the list of all files in self.directory'''
         try:
             return listdir(self.directory)
         except WindowsError as winErr:
             print("Directory error: " + str((winErr)))
-        
+
     def dir_dict(self):
         '''Constructs a list of email dictionaries
         from a directory of .eml files.'''
@@ -160,12 +160,12 @@ class Directory(Email):
             if eml_dict:
                 eml_list.append(eml_dict)
         return eml_list
-        
+
     def convert_json(self, json_path):
         '''Creates a json file of email information at the specified path.'''
         with open(json_path,'w') as json_file:
             json.dump(self.dir_dict(),json_file)
-        
+
 def remove_junk(string):
     '''Removes whitespace characters, escapes, and links from a string.'''
     string = re.sub(r'\s+', ' ', string)
@@ -288,7 +288,7 @@ def separate(text):
             if newstr != '':
                 standardwords.append(newstr)
     return map(lambda x: x.lower(),standardwords)
-    
+
 def load_pickle(pickle_fp):
     '''Loads a .pickle file and returns the object.'''
     f = open(pickle_fp,'rb')
@@ -314,6 +314,6 @@ def main():
     d.convert_json(json_fp)
     print(bad_names)
 
- 
+
 if __name__ == '__main__':
     main()
