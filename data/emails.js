@@ -26,7 +26,7 @@ let exportedMethods = {
         });
     },
     addEmail(email) {
-	    if (typeof email !== "JSON")
+	    if (typeof email !== "object")
 		    return Promise.reject("Email must be in JSON format");
 
 	    return emails().then((emailCollection) => {
