@@ -145,7 +145,7 @@ imap.once('end', function() {
 	  console.log('child process exited with code ' + code);
 	  // Add the new emails from emails.json to the database
 	  var obj;
-	  fs.readFile('file', 'utf8', function (err, data) {
+	  fs.readFile('emails.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		  obj = JSON.parse(data);
 		  var newEmails = obj.toArray();
