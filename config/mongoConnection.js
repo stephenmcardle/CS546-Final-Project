@@ -8,7 +8,7 @@ const settings = {
 };
 
 let fullMongoUrl = settings.mongoConfig.serverUrl + settings.mongoConfig.database;
-let _connection = undefined
+let _connection = undefined;
 
 let connectDb = () => {
     if (!_connection) {
