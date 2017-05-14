@@ -5,6 +5,10 @@ const configRoutes = require("./routes");
 const exphbs  = require('express-handlebars');
 const data = ("../data");
 const emails = data.emails;
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const expressSession = require('express-session');
+const flash = require('connect-flash');
 
 var fs = require('fs'), fileStream;
 const Imap = require('imap'),
@@ -12,14 +16,22 @@ const Imap = require('imap'),
 const util = require('util');
 const spawn = require('child_process').spawn;
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configuring Passport
+app.use(expressSession({ secret: 'tiptopsecret',
+                         resave: false,
+                         saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 configRoutes(app);
-
 
 // Delete all files from eml_directory
 function removeFilesFrom(dirPath) {
