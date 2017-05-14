@@ -10,7 +10,7 @@
   "author": "Stephen McArdle, Andrew Neurohr, Kareem Mohamed, John Seebode",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
     "child_process": "^1.0.2",
     "connect-flash": "^0.1.1",
