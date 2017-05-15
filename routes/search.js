@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
 router.post("/download", (req, res) => {
 	console.log("got to download route");
 	if (!req.user) {
-		res.render('/search', {message: "Must be logged in to search"});
+		res.render('search', {message: "Must be logged in to download"});
 	} else {
 		res.render('search',{emails:results});
 		var currentdate = new Date();
