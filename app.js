@@ -19,6 +19,7 @@ const util = require('util');
 const spawn = require('child_process').spawn;
 var bcrypt = require('bcrypt-nodejs');
 
+
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {
     // If the user posts to the server with a property called _method, rewrite the request's method
     // To be that method; so if they post _method=PUT you can now allow browsers to POST to a route that gets
@@ -70,6 +71,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+configRoutes(app);
+
 // Configuring Passport
 app.use(expressSession({ secret: 'tiptopsecret',
                          resave: false,
@@ -102,37 +105,6 @@ app.post("/register", (req, res) => {
 	            });
 });
 
-app.get('/search',function(req,res,next) {
-	res.render('search');
-});
-
-app.post("/search", (req, res) => {
-	if(req.body.firstname === "" && req.body.lastname === ""){
-		emails.findEmails5(req.body.phrase).then((x) => {
-			res.render('search',{emails:x});
-	});
-	}
-	else if(req.body.firstname === ""){
-		emails.findEmails3(req.body.lastname,req.body.phrase).then((x) => {
-			res.render('search',{emails:x});
-	});
-
-	}
-	else if(req.body.lastname === ""){
-		emails.findEmails2(req.body.firstname,req.body.phrase).then((x) => {
-		res.render('search',{emails:x});
-	});
-	}
-	else{
-		emails.findEmails1(req.body.firstname,req.body.lastname,req.body.phrase).then((x) => {
-			res.render('search',{emails:x});
-		});
-	}
-});
-
-app.use("*", (req, res) => {
-    	res.render("home");
-});
 
 /*
 // This code was used to open the inbox, download new emails, and save them as JSON, as described in the README

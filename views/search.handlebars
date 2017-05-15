@@ -22,10 +22,6 @@
         <button type="submit" class="btn btn-primary searchButton">Search</button>
       </div>
 
-      <div class="form-group">
-        <button type="submit" formaction="/download" class="btn btn-primary downloadButton">Download Results</button>
-      </div>
-
       <div class="results">
         Results:
         {{#each emails}}
@@ -36,5 +32,12 @@
         {{/each}}
       </div>
     </form>
+    {{#if showDownload}}
+    <form id="download-form" action="/search/download" method="post">
+      <div class="form-group">
+          <button type="submit" formaction="/download" class="btn btn-primary   downloadButton">Download Results</button>
+      </div>
+    </form>
+    {{/if}}
   </div>
 </div>
