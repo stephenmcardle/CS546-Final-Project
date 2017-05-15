@@ -250,8 +250,6 @@ imap.once('end', function() {
 
 imap.connect();
 
-// TODO Add the new emails from emails.json to the database
-
 
 app.listen(3000, () => {
 	console.log("Server is running on http://localhost:3000");
