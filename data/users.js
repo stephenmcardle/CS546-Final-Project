@@ -40,8 +40,6 @@ let exportedMethods = {
         });
     },
     addUser(username, password) {
-        console.log(username);
-        console.log(typeof username);
         if (typeof username !== "string")
             return Promise.reject("Expected string for username.");
         // NOTE(k): This isn't proper form validation but it's probably good
