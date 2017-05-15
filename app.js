@@ -17,7 +17,7 @@ const Imap = require('imap'),
 	inspect = require('util').inspect;
 const util = require('util');
 const spawn = require('child_process').spawn;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {
     // If the user posts to the server with a property called _method, rewrite the request's method
@@ -38,7 +38,8 @@ function loggedIn(req, res, next) {
     } else {
         res.redirect('login');
     }
-};
+}
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     users.getUserByUsername(username).then((user) => {
@@ -46,15 +47,14 @@ passport.use(new LocalStrategy(
         return done(null, false, { message: 'Incorrect username.' });
       }
       bcrypt.compare(password,user.hashedPassword).then(function(res) {
-        if(res==false){
+        if(res === false){
             return done(null, false, { message: 'Incorrect password.' });
         }
         else{
             return done(null, user);
         }
-
       });
-    })
+    });
   }
 ));
 
@@ -97,7 +97,7 @@ app.get("/register", (req, res) => {
 
 app.post("/register", (req, res) => {
 	users.addUser(req.body.username,req.body.password).then((x) => {
-		res.render('login');	
+		res.render('login');
 	});
 });
 
@@ -106,29 +106,29 @@ app.get('/search',function(req,res,next) {
 });
 
 app.post("/search", (req, res) => {
-	if(req.body.firstname=="" && req.body.lastname==""){
+	if(req.body.firstname === "" && req.body.lastname === ""){
 		emails.findEmails5(req.body.phrase).then((x) => {
 		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});	
+		res.render('search',{emails:emailsstring});
 	});
 	}
-	else if(req.body.firstname==""){
+	else if(req.body.firstname === ""){
 		emails.findEmails3(req.body.lastname,req.body.phrase).then((x) => {
 		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});	
-	});	
+		res.render('search',{emails:emailsstring});
+	});
 
 	}
-	else if(req.body.lastname==""){
+	else if(req.body.lastname === ""){
 		emails.findEmails2(req.body.firstname,req.body.phrase).then((x) => {
 		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});	
-	});	
+		res.render('search',{emails:emailsstring});
+	});
 	}
 	else{
 		emails.findEmails1(req.body.firstname,req.body.lastname,req.body.phrase).then((x) => {
 			var emailsstring=JSON.stringify(x);
-			res.render('search',{emails:emailsstring});	
+			res.render('search',{emails:emailsstring});
 		});
 	}
 });
@@ -142,19 +142,20 @@ app.use("*", (req, res) => {
 function removeFilesFrom(dirPath) {
 	try {
 		var files = fs.readdirSync(dirPath);
+	  if (files.length > 0)
+		for (var i = 0; i < files.length; i++) {
+		  var filePath = dirPath + '/' + files[i];
+		  if (fs.statSync(filePath).isFile())
+			fs.unlinkSync(filePath);
+		  else
+			removeFilesFrom(filePath);
+		}
+
 	}
 	catch(e) {
 		console.log(e);
 		return;
 	}
-	if (files.length > 0)
-		for (var i = 0; i < files.length; i++) {
-			var filePath = dirPath + '/' + files[i];
-			if (fs.statSync(filePath).isFile())
-				fs.unlinkSync(filePath);
-			else
-				removeFilesFrom(filePath);
-		}
 
 }
 removeFilesFrom('eml_directory');
@@ -162,7 +163,7 @@ removeFilesFrom('eml_directory');
 
 // Retrieve password
 //TODO change this to asynchronous
-var pw = fs.readFileSync("pw.txt", encoding='utf8'); /*{
+var pw = fs.readFileSync("pw.txt", encoding='utf8').trim(); /*{
 	if (error) throw error;
     console.log("it contained " + data);
     pw = data;
@@ -186,13 +187,13 @@ var imap = new Imap({
 function markMailSeen(uid) {
     imap.setFlags([uid], ['\\Seen'], (err) => {
       if (err) {
-        throw err
+        throw err;
       }
       //console.log(err)
     });
 }
 
-var seq_list = []
+var seq_list = [];
 
 // Save all of the eml files from new emails to eml_directory
 imap.once('ready', function() {
@@ -281,7 +282,6 @@ imap.once('end', function() {
 imap.connect();
 
 // TODO Add the new emails from emails.json to the database
-
 
 app.listen(3000, () => {
 	console.log("Server is running on http://localhost:3000");

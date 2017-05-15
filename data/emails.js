@@ -76,7 +76,6 @@ let exportedMethods = {
     },
 
     findEmails3(lastname, phrase) {
-        console.log("dick20");
         return emails().then((emailCollection) => {
             return emailCollection.find({last_name: lastname}).toArray().then((emailCol) => {
                 var finalarray=[];
