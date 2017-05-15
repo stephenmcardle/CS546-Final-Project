@@ -135,8 +135,10 @@ app.post("/search", (req, res) => {
 
 app.use("*", (req, res) => {
     	res.render("home");
-    });
+});
 
+/*
+// This code was used to open the inbox, download new emails, and save them as JSON, as described in the README
 
 // Delete all files from eml_directory
 function removeFilesFrom(dirPath) {
@@ -159,14 +161,8 @@ function removeFilesFrom(dirPath) {
 }
 removeFilesFrom('eml_directory');
 
-
 // Retrieve password
-//TODO change this to asynchronous
-var pw = fs.readFileSync("pw.txt", encoding='utf8'); /*{
-	if (error) throw error;
-    console.log("it contained " + data);
-    pw = data;
-};*/
+var pw = fs.readFileSync("pw.txt", encoding='utf8');
 
 // imap package function to open the inbox
 function openInbox(cb) {
@@ -198,7 +194,7 @@ var seq_list = []
 imap.once('ready', function() {
 	openInbox(function(err, box) {
 	  if (err) throw err;
-	  imap.search([ 'UNSEEN'/*, ['SINCE', 'May 07, 2017']*/ ], function(err, results) {
+	  imap.search([ 'UNSEEN' ], function(err, results) {
 	    if (err) throw err;
 	    if (results.length !== 0) {
 		    var f = imap.fetch(results, { bodies: '' });
@@ -236,7 +232,7 @@ imap.once('error', function(err) {
   	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear()
   			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
   	var file = fs.createWriteStream('errors/seqno_error_' + datetime + '.txt');
-	file.on('error', function(err) { /* error handling */ });
+	file.on('error', function(err) { });
 	seq_list.forEach(function(v) { file.write(v.join(', ') + '\n'); });
 	file.end();
   	imap.end();
@@ -269,7 +265,6 @@ imap.once('end', function() {
 		  var newEmails=[];
 		  for(var i in obj)
 		  	newEmails.push([i, obj[i]]);
-		  //Not sure if this loop will work because addEmail() is async
 		  for (var i = 0; i < newEmails.length; i++) {
 		  	console.log(newEmails[i]);
 		  	emails.addEmail(newEmails[i][1]);
@@ -279,6 +274,21 @@ imap.once('end', function() {
 });
 
 imap.connect();
+*/
+
+
+fs.readFile('emails.json', 'utf8', function (err, data) {
+  if (err) throw err;
+  obj = JSON.parse(data);
+  console.log(typeof obj);
+  var newEmails=[];
+  for(var i in obj)
+  	newEmails.push([i, obj[i]]);
+  for (var i = 0; i < newEmails.length; i++) {
+  	console.log(newEmails[i]);
+  	emails.addEmail(newEmails[i][1]);
+  }
+});
 
 
 app.listen(3000, () => {
