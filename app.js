@@ -165,9 +165,18 @@ removeFilesFrom('eml_directory');
 // Retrieve password
 var pw = fs.readFileSync("pw.txt", encoding='utf8');
 //TODO change this to asynchronous
+<<<<<<< HEAD
 var pw = fs.readFileSync("pw.txt", encoding='utf8').trim();
 
 
+=======
+var pw = fs.readFileSync("pw.txt", encoding='utf8').trim(); /*{
+	if (error) throw error;
+    console.log("it contained " + data);
+    pw = data;
+};*/
+/*
+>>>>>>> 0b08943cc036b3031c234e8e8c2f6688b2da1a6d
 // imap package function to open the inbox
 function openInbox(cb) {
   imap.openBox('INBOX', false, cb);
@@ -279,7 +288,6 @@ imap.once('end', function() {
 
 imap.connect();
 */
-
 
 fs.readFile('emails.json', 'utf8', function (err, data) {
   if (err) throw err;
