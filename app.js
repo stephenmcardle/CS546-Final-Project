@@ -172,8 +172,7 @@ var pw = fs.readFileSync("pw.txt", encoding='utf8').trim(); /*{
     console.log("it contained " + data);
     pw = data;
 };*/
->>>>>>> b0f8f85839d256e0f74a6dc555b264cdbc699632
-
+/*
 // imap package function to open the inbox
 function openInbox(cb) {
   imap.openBox('INBOX', false, cb);
@@ -285,7 +284,6 @@ imap.once('end', function() {
 
 imap.connect();
 */
-
 
 fs.readFile('emails.json', 'utf8', function (err, data) {
   if (err) throw err;
