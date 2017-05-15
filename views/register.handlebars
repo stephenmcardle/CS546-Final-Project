@@ -3,6 +3,13 @@
     <form id="register-form" action="/register" method="post">
       <div class="form-group">
 
+
+        <label for="firstname">First name:</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" value="{{firstname}}">
+
+        <label for="lastname">Lastname:</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" value="{{lastname}}">
+
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="username" value="{{username}}">
 
@@ -12,11 +19,11 @@
       </div>
 
       <div class="error">
-        {{ message }}
+        {{ error }}
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit">Register</button>
       </div>
 
     </form>

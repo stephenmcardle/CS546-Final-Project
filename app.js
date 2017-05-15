@@ -3,10 +3,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const configRoutes = require("./routes");
 const exphbs  = require('express-handlebars');
-const data = ("../data");
+const data = require("./data");
 const emails = data.emails;
+const users = data.users;
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 
@@ -15,6 +17,56 @@ const Imap = require('imap'),
 	inspect = require('util').inspect;
 const util = require('util');
 const spawn = require('child_process').spawn;
+var bcrypt = require('bcrypt');
+
+const rewriteUnsupportedBrowserMethods = (req, res, next) => {
+    // If the user posts to the server with a property called _method, rewrite the request's method
+    // To be that method; so if they post _method=PUT you can now allow browsers to POST to a route that gets
+    // rewritten in this middleware to a PUT route
+    if (req.body && req.body._method) {
+        req.method = req.body._method;
+        delete req.body._method;
+    }
+
+    // let the next middleware run:
+    next();
+};
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('login');
+    }
+};
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    users.getUserByUsername(username).then((user) => {
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      bcrypt.compare(password,user.hashedPassword).then(function(res) {
+        if(res==false){
+            return done(null, false, { message: 'Incorrect password.' });
+        }
+        else{
+            return done(null, user);
+        }
+
+      });
+    })
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  users.getUserById(id).then((user) => {
+    done(null, user);
+  });
+});
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -31,7 +83,32 @@ app.use(flash());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-configRoutes(app);
+app.get("/login", (req, res) => {
+	res.render('login',{error: req.flash('error')});
+});
+app.post('/login',
+ passport.authenticate('local', { successRedirect: '/search',
+                                   failureRedirect: '/login',
+                               	   failureFlash: true})
+);
+app.get("/register", (req, res) => {
+	res.render('register');
+});
+
+app.post("/register", (req, res) => {
+	users.addUser(req.body.username,req.body.password).then((x) => {
+		res.render('login');	
+	});
+});
+
+app.get('/search',function(req,res,next) {
+	res.render('search');
+});
+
+app.use("*", (req, res) => {
+    	res.render("home");
+    });
+
 
 // Delete all files from eml_directory
 function removeFilesFrom(dirPath) {
@@ -160,7 +237,9 @@ imap.once('end', function() {
 	  fs.readFile('emails.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		  obj = JSON.parse(data);
-		  var newEmails = obj.toArray();
+		  var newEmails=[];
+		  for(var i in obj)
+		  	newEmails.push([i, obj[i]]);
 		  //Not sure if this loop will work because addEmail() is async
 		  for (var i = 0; i < newEmails.length; i++) {
 		  	emails.addEmail(newEmails[i]);

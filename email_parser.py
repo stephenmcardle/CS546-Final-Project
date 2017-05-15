@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import email.message, email.parser, email, json, re, email.utils, pickle, nltk, urllib2, settings, time, sys
+import email.message, email.parser, email, json, re, email.utils, pickle,urllib2, settings, time, sys
 from os import listdir
 from time import strftime
 

@@ -35,13 +35,13 @@ let exportedMethods = {
             return userCollection
                 .findOne({username: username})
                 .then((user) => {
-                    if (!user)
-                        throw "User not found with username: " + username;
                     return user;
                 });
         });
     },
     addUser(username, password) {
+        console.log(username);
+        console.log(typeof username);
         if (typeof username !== "string")
             return Promise.reject("Expected string for username.");
         // NOTE(k): This isn't proper form validation but it's probably good
@@ -55,7 +55,6 @@ let exportedMethods = {
         if (password === "") {
             return Promise.reject("No password provided.");
         }
-
         return users().then((userCollection) => {
             let freshId = uuidV4();
             let hashedPassword = bcrypt.hashSync(password);
