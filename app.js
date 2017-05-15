@@ -108,27 +108,23 @@ app.get('/search',function(req,res,next) {
 app.post("/search", (req, res) => {
 	if(req.body.firstname === "" && req.body.lastname === ""){
 		emails.findEmails5(req.body.phrase).then((x) => {
-		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});
+			res.render('search',{emails:x});
 	});
 	}
 	else if(req.body.firstname === ""){
 		emails.findEmails3(req.body.lastname,req.body.phrase).then((x) => {
-		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});
+			res.render('search',{emails:x});
 	});
 
 	}
 	else if(req.body.lastname === ""){
 		emails.findEmails2(req.body.firstname,req.body.phrase).then((x) => {
-		var emailsstring=JSON.stringify(x);
-		res.render('search',{emails:emailsstring});
+		res.render('search',{emails:x});
 	});
 	}
 	else{
 		emails.findEmails1(req.body.firstname,req.body.lastname,req.body.phrase).then((x) => {
-			var emailsstring=JSON.stringify(x);
-			res.render('search',{emails:emailsstring});
+			res.render('search',{emails:x});
 		});
 	}
 });
