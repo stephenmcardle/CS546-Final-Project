@@ -71,7 +71,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-configRoutes(app);
 
 // Configuring Passport
 app.use(expressSession({ secret: 'tiptopsecret',
@@ -105,6 +104,7 @@ app.post("/register", (req, res) => {
 	            });
 });
 
+configRoutes(app);
 
 /*
 // This code was used to open the inbox, download new emails, and save them as JSON, as described in the README
