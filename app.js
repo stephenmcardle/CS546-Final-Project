@@ -46,14 +46,12 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      bcrypt.compare(password,user.hashedPassword).then(function(res) {
-        if(res === false){
-            return done(null, false, { message: 'Incorrect password.' });
-        }
-        else{
-            return done(null, user);
-        }
-      });
+      if (!bcrypt.compareSync(password, user.hashedPassword)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      else {
+        return done(null, user);
+      }
     });
   }
 ));
@@ -97,7 +95,7 @@ app.get("/register", (req, res) => {
 
 app.post("/register", (req, res) => {
 	users.addUser(req.body.username,req.body.password).then((x) => {
-		res.render('login');
+		res.redirect('/login');
 	});
 });
 
