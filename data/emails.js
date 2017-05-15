@@ -39,7 +39,7 @@ let exportedMethods = {
             });
         });
     },
-    findEmails(firstname, lastname, phrase, branch, party) {
+    findEmails(firstname, lastname, phrase) {
 	    return emails().then((emailCollection) => {
 		    return emailCollection.findOne({ firstname: firstname, lastname: lastname, branch:branch, party:party }).then((emailCol) => {
 			    return emailCol.find({ $regex: phrase, $options: 'i' }).toArray().then((emailList) => {
