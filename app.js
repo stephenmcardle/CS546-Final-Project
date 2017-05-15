@@ -94,9 +94,12 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-	users.addUser(req.body.username,req.body.password).then((x) => {
-		res.redirect('/login');
-	});
+  users.addUser(req.body.firstname,
+                req.body.lastname,
+                req.body.username,
+                req.body.password).then((x) => {
+		          res.render('login');
+	            });
 });
 
 app.get('/search',function(req,res,next) {
