@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
 import email.message, email.parser, email, json, re, email.utils, pickle,urllib2, settings, time, sys
