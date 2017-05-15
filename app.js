@@ -163,16 +163,10 @@ function removeFilesFrom(dirPath) {
 removeFilesFrom('eml_directory');
 
 // Retrieve password
-<<<<<<< HEAD
 var pw = fs.readFileSync("pw.txt", encoding='utf8');
-=======
 //TODO change this to asynchronous
-var pw = fs.readFileSync("pw.txt", encoding='utf8').trim(); /*{
-	if (error) throw error;
-    console.log("it contained " + data);
-    pw = data;
-};*/
->>>>>>> b0f8f85839d256e0f74a6dc555b264cdbc699632
+var pw = fs.readFileSync("pw.txt", encoding='utf8').trim();
+
 
 // imap package function to open the inbox
 function openInbox(cb) {
