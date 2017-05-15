@@ -39,7 +39,7 @@ let exportedMethods = {
                 });
         });
     },
-    addUser(username, password) {
+    addUser(firstname, lastname, username, password) {
         if (typeof username !== "string")
             return Promise.reject("Expected string for username.");
         // NOTE(k): This isn't proper form validation but it's probably good
@@ -53,11 +53,25 @@ let exportedMethods = {
         if (password === "") {
             return Promise.reject("No password provided.");
         }
+
+        if (typeof firstname !== "string")
+            return Promise.reject("Expected string for firstname.");
+        if (firstname === "") {
+            return Promise.reject("No firstname provided.");
+        }
+
+        if (typeof lastname !== "string")
+            return Promise.reject("Expected string for lastname.");
+        if (lastname === "") {
+            return Promise.reject("No lastname provided.");
+        }
         return users().then((userCollection) => {
             let freshId = uuidV4();
             let hashedPassword = bcrypt.hashSync(password);
             let newUser = {
                 _id: freshId,
+                firstname: firstname,
+                lastname: lastname,
                 username: username,
                 hashedPassword: hashedPassword
             };
