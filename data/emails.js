@@ -35,19 +35,73 @@ let exportedMethods = {
     	    return emailCollection.insertOne(email).then((newInsertInformation) => {
                 return newInsertInformation.insertedId;
             }).then((newId) => {
-                return exports.getEmailById(newId);
+                return this.getEmailById(newId);
             });
         });
     },
     findEmails(firstname, lastname, phrase, branch, party) {
 	    return emails().then((emailCollection) => {
-		    return emailCollection.find({ firstname: firstname, lastname: lastname, branch:branch, party:party }).then((emailCol) => {
+		    return emailCollection.findOne({ firstname: firstname, lastname: lastname, branch:branch, party:party }).then((emailCol) => {
 			    return emailCol.find({ $regex: phrase, $options: 'i' }).toArray().then((emailList) => {
 				    return emailList;
 			    });
 		    });
 	    });
+    },
+    findEmails1(firstname, lastname, phrase) {
+        return emails().then((emailCollection) => {
+            return emailCollection.find({ first_name: firstname, last_name: lastname}).toArray().then((emailCol) => {
+                var finalarray=[];
+                for(let i=0;i<emailCol.length;i++){
+                    if(emailCol[i].Body.includes(phrase)){
+                        finalarray.push(emailCol[i]);
+                    }
+                }
+                return finalarray;
+                });
+        });
+    },
+    findEmails2(firstname,phrase) {
+        return emails().then((emailCollection) => {
+            return emailCollection.find({ first_name: firstname}).toArray().then((emailCol) => {
+                var finalarray=[];
+                for(let i=0;i<emailCol.length;i++){
+                    if(emailCol[i].Body.includes(phrase)){
+                        finalarray.push(emailCol[i]);
+                    }
+                }
+                return finalarray;
+                });
+        });
+    },
+
+    findEmails3(lastname, phrase) {
+        console.log("dick20");
+        return emails().then((emailCollection) => {
+            return emailCollection.find({last_name: lastname}).toArray().then((emailCol) => {
+                var finalarray=[];
+                for(let i=0;i<emailCol.length;i++){
+                    if(emailCol[i].Body.includes(phrase)){
+                        finalarray.push(emailCol[i]);
+                    }
+                }
+                return finalarray;
+                });
+        });
+    },
+
+    findEmails5(phrase) {
+        return this.getAllEmails().then((emailCol) => {
+                var finalarray=[];
+                for(let i=0;i<emailCol.length;i++){
+                    if(emailCol[i].Body.includes(phrase)){
+                        finalarray.push(emailCol[i]);
+                    }
+                }
+                return finalarray;
+                });
     }
+
 };
 
 module.exports = exportedMethods;

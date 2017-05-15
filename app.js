@@ -105,6 +105,34 @@ app.get('/search',function(req,res,next) {
 	res.render('search');
 });
 
+app.post("/search", (req, res) => {
+	if(req.body.firstname=="" && req.body.lastname==""){
+		emails.findEmails5(req.body.phrase).then((x) => {
+		var emailsstring=JSON.stringify(x);
+		res.render('search',{emails:emailsstring});	
+	});
+	}
+	else if(req.body.firstname==""){
+		emails.findEmails3(req.body.lastname,req.body.phrase).then((x) => {
+		var emailsstring=JSON.stringify(x);
+		res.render('search',{emails:emailsstring});	
+	});	
+
+	}
+	else if(req.body.lastname==""){
+		emails.findEmails2(req.body.firstname,req.body.phrase).then((x) => {
+		var emailsstring=JSON.stringify(x);
+		res.render('search',{emails:emailsstring});	
+	});	
+	}
+	else{
+		emails.findEmails1(req.body.firstname,req.body.lastname,req.body.phrase).then((x) => {
+			var emailsstring=JSON.stringify(x);
+			res.render('search',{emails:emailsstring});	
+		});
+	}
+});
+
 app.use("*", (req, res) => {
     	res.render("home");
     });
@@ -237,12 +265,14 @@ imap.once('end', function() {
 	  fs.readFile('emails.json', 'utf8', function (err, data) {
 		  if (err) throw err;
 		  obj = JSON.parse(data);
+		  console.log(typeof obj);
 		  var newEmails=[];
 		  for(var i in obj)
 		  	newEmails.push([i, obj[i]]);
 		  //Not sure if this loop will work because addEmail() is async
 		  for (var i = 0; i < newEmails.length; i++) {
-		  	emails.addEmail(newEmails[i]);
+		  	console.log(newEmails[i]);
+		  	emails.addEmail(newEmails[i][1]);
 		  }
 	  });
 	});
