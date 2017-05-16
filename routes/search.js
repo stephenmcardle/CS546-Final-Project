@@ -46,14 +46,26 @@ router.post("/download", (req, res) => {
 		console.log(req.user);
 		res.render('search', {message: "Must be logged in to download"});
 	} else {
-		res.render('search',{emails:results});
 		var currentdate = new Date();
 	  	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear()
 	  			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-	  	fs.writeFile(path.join(__dirname, '../downloads/search_results_' + datetime + '.txt'), JSON.stringify(results), function(error) {
+	  	var filename = path.join(__dirname, '../downloads/search_results_' + datetime + '.txt');
+	  	fs.writeFile(filename, JSON.stringify(results), function(error) {
 	  		if (error) {
 	  			console.log(error);
 	  		}
+	  		var options = {
+		    root: __dirname + '../downloads/',
+		    dotfiles: 'deny',
+		    headers: {
+		        'x-timestamp': Date.now(),
+		        'x-sent': true
+		    }
+		  };
+	  		res.sendFile(filename, function(err) {
+	  			if (err) console.log(err);
+	  			else console.log("sent " + filename);
+	  		});
 	  	});
 	}	
 
