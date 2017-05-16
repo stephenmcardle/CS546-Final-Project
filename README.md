@@ -15,3 +15,5 @@ The project originally opened a Gmail inbox using IMAP, downloaded all unread em
 
 ### Note
 Keep in mind that email_parser.py was created for a different project, so the format of emails.json is not ideal for this project.
+Our demo video shows that some emails are repeated in search results. This is because we have been testing with the same emails.json file repeatedly to avoid abusing our API key.
+This project was tested on Linux.
