@@ -49,7 +49,7 @@ router.post("/download", (req, res) => {
 		var currentdate = new Date();
 	  	var datetime = currentdate.getDate() + "-" + (currentdate.getMonth()+1) + "-" + currentdate.getFullYear()
 	  			+ "@" + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-	  	var filename = path.join(__dirname, '../downloads/search_results_' + datetime + '.txt');
+	  	var filename = path.join(__dirname, '../downloads/search_results_' + datetime + '.json');
 	  	fs.writeFile(filename, JSON.stringify(results), function(error) {
 	  		if (error) {
 	  			console.log(error);
@@ -62,7 +62,7 @@ router.post("/download", (req, res) => {
 		        'x-sent': true
 		    }
 		  };
-	  		res.sendFile(filename, function(err) {
+	  		res.download(filename, "results.json", function(err) {
 	  			if (err) console.log(err);
 	  			else console.log("sent " + filename);
 	  		});
